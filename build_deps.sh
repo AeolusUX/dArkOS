@@ -26,6 +26,7 @@ sudo chroot ${CHROOT_DIR}/ bash -c "apt-get -y update && DEBIAN_FRONTEND=noninte
   g++-12 \
   gcc-12 \
   git \
+  liba52-0.7.4 \
   libarchive-zip-perl \
   libasound2-dev \
   libboost-date-time-dev \
@@ -36,8 +37,11 @@ sudo chroot ${CHROOT_DIR}/ bash -c "apt-get -y update && DEBIAN_FRONTEND=noninte
   libdrm-dev \
   libeigen3-dev \
   libevdev-dev \
+  libfaad2 \
   libfreeimage-dev \
   libfreetype6-dev \
+  libmad0 \
+  libmpeg2-4 \
   libnl-3-dev \
   libnl-genl-3-dev \
   libnl-route-3-dev \
@@ -47,9 +51,12 @@ sudo chroot ${CHROOT_DIR}/ bash -c "apt-get -y update && DEBIAN_FRONTEND=noninte
   libsdl2-image-2.0-0 \
   libsdl2-image-dev \
   libsdl2-mixer-dev \
+  libsdl2-net-2.0-0 \
   libsdl2-ttf-2.0-0 \
   libsdl2-ttf-dev \
+  libspeechd2 \
   libstdc++-12-dev \
+  libtheoradec1 \
   libtool \
   libtool-bin \
   libvlc-dev \
@@ -59,6 +66,7 @@ sudo chroot ${CHROOT_DIR}/ bash -c "apt-get -y update && DEBIAN_FRONTEND=noninte
   premake4 \
   psmisc \
   python3 \
+  python3-evdev \
   python3-pip \
   python3-setuptools \
   python3-urwid \

@@ -25,7 +25,7 @@ case $1 in
 	modprobe -r dwc2
 	modprobe -i dwc2
 	sleep 2
-	# sudo systemctl restart oga_events
+	# sudo systemctl restart ogage
 	systemctl is-active --quiet solarushotkey.service && sudo systemctl restart solarushotkey
         systemctl is-active --quiet pico8hotkey.service && sudo systemctl restart pico8hotkey
         systemctl is-active --quiet ppsspphotkey.service && sudo systemctl restart ppsspphotkey

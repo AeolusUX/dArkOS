@@ -8,3 +8,5 @@ mgba
 mgba_rumble
 nestopia
 pcsx_rearmed
+ppsspp
+scummvm

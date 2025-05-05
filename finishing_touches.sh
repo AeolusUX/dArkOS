@@ -154,6 +154,8 @@ sudo cp launchimages/loading.jpg.rgb10 ${fat32_mountpoint}/launchimages/loading.
 
 # Copy various tools to roms folders
 sudo cp -a ecwolf/Scan* ${fat32_mountpoint}/wolf/
+sudo cp -a scummvm/Scan* ${fat32_mountpoint}/scummvm/
+sudo cp -a scummvm/menu.scummvm ${fat32_mountpoint}/scummvm/
 
 # Clone some themes to the roms/themes folder
 sudo git clone https://github.com/Jetup13/es-theme-nes-box.git ${fat32_mountpoint}/themes/es-theme-nes-box

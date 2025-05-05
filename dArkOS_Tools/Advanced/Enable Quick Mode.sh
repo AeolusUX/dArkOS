@@ -138,7 +138,7 @@ do
 	sudo sed -i '/WorkingDirectory\=/c\WorkingDirectory\=\/home\/ark\/.config\/' /etc/systemd/system/firstboot.service
 
 	# With Quick Mode, let's not hold up the hotkey deamon from starting since ES may not boot before in game
-	sudo sed -i '/After\=/s//\#After\=/' /etc/systemd/system/oga_events.service
+	sudo sed -i '/After\=/s//\#After\=/' /etc/systemd/system/ogage.service
 	sudo systemctl daemon-reload
 	sudo systemctl enable firstboot
 

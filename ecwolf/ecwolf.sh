@@ -68,7 +68,7 @@ then
   sudo /usr/local/bin/ecwolfsakeydemon.py &
   SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig" /opt/ecwolf/ecwolf --savedir "/$directory/wolf/${filename%.*}"
   sudo killall python3
-  sudo systemctl restart oga_events &
+  sudo systemctl restart ogage &
 else
   filename="$(basename "$2")"
   game=$(find "/$directory/wolf/${filename%.*}" -type f -iname "*.exe" | grep -iv "install" | grep -iv "setup")

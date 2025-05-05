@@ -67,7 +67,7 @@ if [ "$?" -eq "10" ]; then
                   case $choice in
                           "1)") sudo kill -9 $(pidof boot_controls)
                                 printf "\033c" > /dev/tty1
-                                sudo systemctl restart oga_events &
+                                sudo systemctl restart ogage &
                                 /usr/bin/emulationstation/emulationstation.sh
                                 exit
                                 ;;
@@ -82,7 +82,7 @@ if [ "$?" -eq "10" ]; then
                                 sudo cp -f /usr/bin/emulationstation/emulationstation.sh.ra /usr/bin/emulationstation/emulationstation.sh
                                 sed -i '/input_exit_emulator_btn/s//;input_exit_emulator_btn/g' /home/ark/.config/retroarch/retroarch.cfg
                                 printf "\033c" > /dev/tty1
-                                sudo systemctl restart oga_events &
+                                sudo systemctl restart ogage &
                                 /usr/bin/emulationstation/emulationstation.sh
                                 exit
                                 ;;

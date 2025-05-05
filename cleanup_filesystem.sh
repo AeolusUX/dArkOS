@@ -48,10 +48,6 @@ sudo chroot Arkbuild/ bash -c "apt-get remove -y autotools-dev \
   libogg-dev \
   libopenal-dev \
   libpng-dev \
-  libsdl2-image-dev \
-  libsdl2-mixer-dev \
-  libsdl2-net-dev \
-  libsdl2-ttf-dev \
   libsm-dev \
   libspeechd-dev \
   libstdc++-12-dev \

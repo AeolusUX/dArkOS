@@ -10,7 +10,7 @@ sudo mkdir -p Arkbuild/opt/ppsspp
 sudo cp -Ra Arkbuild/home/ark/rk3326_core_builds/ppsspp/build/assets/ Arkbuild/opt/ppsspp/
 sudo cp ppsspp/gamecontrollerdb.txt Arkbuild/opt/ppsspp/assets/
 sudo cp ppsspp/ppsspp.sh Arkbuild/usr/local/bin/
-sudo cp ppsspp/ppsspphotkey.service Arkbuild/etc/Arkbuild/etc/systemd/system/
+sudo cp ppsspp/ppsspphotkey.service Arkbuild/etc/systemd/system/
 sudo cp ppsspp/ppssppkeydemon.py.rgb10 Arkbuild/usr/local/bin/ppssppkeydemon.py
 sudo cp -R ppsspp/configs/backupforromsfolder/ Arkbuild/opt/ppsspp/
 sudo cp ppsspp/controls.ini.rgb10 Arkbuild/opt/ppsspp/backupforromsfolder/ppsspp/PSP/SYSTEM/controls.ini

@@ -10,6 +10,9 @@ gbc
 launchimages
 neogeo
 nes
+psp
+pspminis
 psx
+scummvm
 tools
 wolf
