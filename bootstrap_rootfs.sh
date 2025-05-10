@@ -1,10 +1,22 @@
 #!/bin/bash
 
 echo -e "Boostraping Debian....\n\n"
-# Ensure qemu-aarch64-static is installed
-if ! [ -f /usr/bin/qemu-aarch64-static ]; then
+# Ensure some build tools are installed and ready
+sudo apt -y update
+for NEEDED_TOOL in bc build-essential debootstrap gcc lib32stdc++6 libc6-i386 libncurses5-dev lzop qemu-user-static zlib1g:i386
+do
+  dpkg -s "$NEEDED_TOOL" &>/dev/null
+  if [[ $? != "0" ]]; then
+    sudo apt -y install ${NEEDED_TOOL}
+    verify_action
+  fi
+done
+
+#Ensure debootstrap is installed
+dpkg -s "debootstrap" &>/dev/null
+if [[ $? != "0" ]]; then
   sudo apt -y update
-  sudo apt -y install qemu-user-static
+  sudo apt -y install debootstrap
 fi
 
 # Bootstrap base system

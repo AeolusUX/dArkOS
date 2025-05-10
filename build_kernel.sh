@@ -1,5 +1,19 @@
 #!/bin/bash
 
+# Verify the correct toolchain is available
+if [ ! -f "toolchains/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu" ]; then
+  mkdir -p toolchains
+  wget https://releases.linaro.org/components/toolchain/binaries/6.3-2017.05/aarch64-linux-gnu/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu.tar.xz
+  verify_action
+  tar Jxvf gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu.tar.xz -C toolchains/
+  rm gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu.tar.xz
+fi
+
+# Setup the necessary exports
+export ARCH=arm64
+export CROSS_COMPILE=aarch64-linux-gnu-
+export PATH=toolchains/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu/bin/:$PATH
+
 # Build and install custom kernel from christianhaitian/linux
 KERNEL_SRC=odroidgoA-4.4.y
 if [ ! -d "$KERNEL_SRC" ]; then
@@ -9,6 +23,7 @@ cd $KERNEL_SRC
 make ARCH=arm64 odroidgoa_tweaked_defconfig
 make -j$(nproc) ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- modules_prepare
 make -j$(nproc) ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image dtbs modules
+verify_action
 cd ..
 
 # Install kernel modules
