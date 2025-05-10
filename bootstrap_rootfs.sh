@@ -1,16 +1,6 @@
 #!/bin/bash
 
 echo -e "Boostraping Debian....\n\n"
-# Ensure some build tools are installed and ready
-sudo apt -y update
-for NEEDED_TOOL in bc build-essential debootstrap eatmydata gcc lib32stdc++6 libc6-i386 libncurses5-dev lzop qemu-user-static zlib1g:i386
-do
-  dpkg -s "$NEEDED_TOOL" &>/dev/null
-  if [[ $? != "0" ]]; then
-    sudo apt -y install ${NEEDED_TOOL}
-    verify_action
-  fi
-done
 
 #Ensure debootstrap is installed
 dpkg -s "debootstrap" &>/dev/null
