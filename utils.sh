@@ -78,6 +78,7 @@ function remove_arkbuild() {
   do
     if grep -qs "Arkbuild/${m} " /proc/mounts; then
       sudo umount Arkbuild/${m}
+      verify_action
     fi
   done
   [ -d "Arkbuild" ] && sudo rm -rf Arkbuild
@@ -89,6 +90,7 @@ function remove_arkbuild32() {
   do
     if grep -qs "Arkbuild32/${m} " /proc/mounts; then
       sudo umount Arkbuild32/${m}
+      verify_action
     fi
   done
   [ -d "Arkbuild32" ] && sudo rm -rf Arkbuild32

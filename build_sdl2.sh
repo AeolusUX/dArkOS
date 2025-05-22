@@ -39,3 +39,4 @@ sudo chroot ${CHROOT_DIR}/ bash -c "ln -sfv /usr/lib/${ARCH}/libSDL2-2.0.so.0.${
 #sudo chroot ${CHROOT_DIR}/ bash -c "ln -sfv /usr/lib/${ARCH}/libSDL2.so /usr/lib/${ARCH}/libSDL2-2.0.so.0"
 #sudo chroot ${CHROOT_DIR}/ bash -c "ln -sfv /usr/lib/${ARCH}/libSDL2-2.0.so.0.${extension} /usr/lib/${ARCH}/libSDL2.so"
 sudo rm -rf ${CHROOT_DIR}/home/ark/rk3326_core_builds/SDL
+sudo cp -R ${CHROOT_DIR}/home/ark/rk3326_core_builds/SDL/include/* ${CHROOT_DIR}/usr/include/${ARCH}/SDL2/
