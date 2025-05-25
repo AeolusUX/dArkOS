@@ -100,7 +100,6 @@ sudo chroot Arkbuild/ bash -c "ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2.so /
 sudo chroot Arkbuild/ bash -c "ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.${extension} /usr/lib/arm-linux-gnueabihf/libSDL2.so"
 sudo chroot Arkbuild/ ldconfig
 
-sudo unlink Arkbuild/home/ark/Arkbuild_ccache
 sudo rm -rf Arkbuild/var/log/journal
 sudo rm Arkbuild/usr/sbin/policy-rc.d
 sudo rm -f Arkbuild/etc/resolv.conf

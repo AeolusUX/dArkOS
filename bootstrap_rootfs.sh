@@ -23,8 +23,10 @@ fi
 if [ ! -d "Arkbuild_ccache" ]; then
   mkdir Arkbuild_ccache
 fi
-export CCACHE_DIR=Arkbuild_ccache
-[ -z $(echo $PATH | grep Arkbuild_ccache) ] && export PATH=Arkbuild_ccache:$PATH
+export CCACHE_DIR=${PWD}/Arkbuild_ccache
+sudo /usr/sbin/update-ccache-symlinks
+[ -z $(echo $PATH | grep ccache) ] && export PATH=/usr/lib/ccache:$PATH
+
 
 # Bootstrap base system
 sudo eatmydata debootstrap --no-check-gpg --include=eatmydata --resolve-deps --arch=arm64 --foreign bookworm Arkbuild http://deb.debian.org/debian/
@@ -34,13 +36,14 @@ sudo chroot Arkbuild/ eatmydata /debootstrap/debootstrap --second-stage
 
 # Bind essential host filesystems into chroot for networking
 sudo mount --bind /dev Arkbuild/dev
-sudo mount --bind /dev/pts Arkbuild/dev/pts
+sudo mount -t devpts none Arkbuild/dev/pts -o newinstance,ptmxmode=0666
+#sudo mount --bind /dev/pts Arkbuild/dev/pts -o newinstance,ptmxmode=0666
 sudo mount --bind /proc Arkbuild/proc
 sudo mount --bind /sys Arkbuild/sys
 echo -e "nameserver 8.8.8.8\nnameserver 1.1.1.1" | sudo tee Arkbuild/etc/resolv.conf > /dev/null
 
 # Avoid service autostarts
-echo "exit 101" | sudo tee Arkbuild/usr/sbin/policy-rc.d
+echo "exit 101" | sudo tee Arkbuild/usr/sbin/policy-rc.d > /dev/null
 sudo chmod 0755 Arkbuild/usr/sbin/policy-rc.d
 sudo chroot Arkbuild/ mount -t proc proc /proc
 
@@ -52,7 +55,8 @@ sudo chroot Arkbuild/ eatmydata apt-get -y install libc6:armhf liblzma5:armhf li
 # Install base runtime packages
 sudo chroot Arkbuild/ eatmydata apt-get install -y initramfs-tools sudo evtest network-manager systemd-sysv locales locales-all ssh dosfstools fluidsynth
 sudo chroot Arkbuild/ eatmydata apt-get install -y python3 python3-pip
-sudo chroot Arkbuild/ bash -c "export LC_All=C.UTF-8 && update-locale"
+echo -e "export LC_All=C.UTF-8" | sudo tee -a Arkbuild/root/.bashrc > /dev/null
+sudo chroot Arkbuild/ bash -c "update-locale"
 sudo chroot Arkbuild/ systemctl enable NetworkManager
 
 # Install libmali, DRM, and GBM libraries for rk3326

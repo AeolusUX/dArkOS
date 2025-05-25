@@ -34,10 +34,12 @@ done <needed_dev_packages.txt
 #sudo chroot ${CHROOT_DIR}/ bash -c "update-alternatives --set gcc \"/usr/bin/gcc-12\""
 #sudo chroot ${CHROOT_DIR}/ bash -c "update-alternatives --set g++ \"/usr/bin/g++-12\""
 
-# Symlink ccache to chroot to speed up consecutive builds
-sudo ln -s Arkbuild_ccache ${CHROOT_DIR}/home/ark/Arkbuild_ccache
-sudo chroot ${CHROOT_DIR}/ bash -c "export CCACHE_DIR=/home/ark/Arkbuild_ccache"
-sudo chroot ${CHROOT_DIR}/ bash -c "[ -z \$(echo \$PATH | grep Arkbuild_ccache) ] && export PATH=/home/ark/Arkbuild_ccache:\$PATH"
+# Bind ccache to chroot to speed up consecutive builds
+[ ! -d "${CHROOT_DIR}/home/ark/Arkbuild_ccache" ] && sudo mkdir -p ${CHROOT_DIR}/home/ark/Arkbuild_ccache
+sudo mount --bind ${PWD}/Arkbuild_ccache ${CHROOT_DIR}/home/ark/Arkbuild_ccache
+sudo chroot ${CHROOT_DIR}/ bash -c "[ -z \$(echo \$CCACHE_DIR | grep ccache) ]" && echo -e "export CCACHE_DIR=/home/ark/Arkbuild_ccache" | sudo tee -a ${CHROOT_DIR}/root/.bashrc > /dev/null
+sudo chroot ${CHROOT_DIR}/ bash -c "[ -z \$(echo \$PATH | grep ccache) ]" && echo -e "export PATH=/usr/lib/ccache:\$PATH" | sudo tee -a ${CHROOT_DIR}/root/.bashrc > /dev/null
+sudo chroot ${CHROOT_DIR}/ bash -c "/usr/sbin/update-ccache-symlinks"
 
 # Symlink fix for DRM headers
 sudo chroot ${CHROOT_DIR}/ bash -c "ln -s /usr/include/libdrm/ /usr/include/drm"

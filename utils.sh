@@ -40,7 +40,8 @@ function setup_arkbuild32() {
 
     # Bind essential host filesystems into chroot for networking
     sudo mount --bind /dev Arkbuild32/dev
-    sudo mount --bind /dev/pts Arkbuild32/dev/pts
+    sudo mount -t devpts none Arkbuild32/dev/pts -o newinstance,ptmxmode=0666
+    #sudo mount --bind /dev/pts Arkbuild32/dev/pts
     sudo mount --bind /proc Arkbuild32/proc
     sudo mount --bind /sys Arkbuild32/sys
     echo -e "nameserver 8.8.8.8\nnameserver 1.1.1.1" | sudo tee Arkbuild32/etc/resolv.conf > /dev/null
@@ -74,19 +75,20 @@ function setup_arkbuild32() {
 }
 
 function remove_arkbuild() {
-  for m in proc dev/pts dev sys
+  for m in home/ark/Arkbuild_ccache proc dev/pts dev sys
   do
     if grep -qs "Arkbuild/${m} " /proc/mounts; then
       sudo umount Arkbuild/${m}
       verify_action
     fi
   done
+  sudo rm -rf Arkbuild/home/ark/Arkbuild_ccache
   [ -d "Arkbuild" ] && sudo umount Arkbuild
   return 0
 }
 
 function remove_arkbuild32() {
-  for m in proc dev/pts dev sys
+  for m in home/ark/Arkbuild_ccache proc dev/pts dev sys
   do
     if grep -qs "Arkbuild32/${m} " /proc/mounts; then
       sudo umount Arkbuild32/${m}
