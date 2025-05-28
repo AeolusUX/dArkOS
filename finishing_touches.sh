@@ -120,6 +120,9 @@ sudo chroot Arkbuild/ bash -c "chown -R ark:ark /home/ark"
 # Set default volume
 sudo cp audio/asound.state.rk3326 Arkbuild/var/local/asound.state
 
+# Set SDL Video Driver for bash
+echo "export SDL_VIDEO_EGL_DRIVER=libEGL.so" | sudo tee Arkbuild/etc/profile.d/SDL_VIDEO.sh
+
 # Set the locale
 
 sudo umount ${mountpoint}
