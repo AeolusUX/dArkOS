@@ -57,6 +57,7 @@ python3-urwid
 python3-wheel
 rfkill
 rustc
+systemd-timesyncd
 tar
 unzip
 vlc-bin

@@ -2,6 +2,8 @@
 
 directory=$(dirname "$2" | cut -d "/" -f2)
 
+ln -sf /$directory/psp/ppsspp/ /home/ark/.config/
+
 if  [[ $1 == "standalone" ]]; then
   if  [[ ! -d "/$directory/psp/ppsspp" ]]; then
     cp -rf /opt/ppsspp/backupforromsfolder/ppsspp /$directory/psp

@@ -55,8 +55,10 @@ sudo chroot Arkbuild/ eatmydata apt-get -y install libc6:armhf liblzma5:armhf li
 # Install base runtime packages
 sudo chroot Arkbuild/ eatmydata apt-get install -y initramfs-tools sudo evtest network-manager systemd-sysv locales locales-all ssh dosfstools fluidsynth
 sudo chroot Arkbuild/ eatmydata apt-get install -y python3 python3-pip
-echo -e "export LC_All=C.UTF-8" | sudo tee -a Arkbuild/root/.bashrc > /dev/null
-sudo chroot Arkbuild/ bash -c "update-locale"
+sudo sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' Arkbuild/etc/locale.gen
+echo 'LANG="en_US.UTF-8"' | sudo tee -a Arkbuild/etc/default/locale > /dev/null
+echo -e "export LC_All=en_US.UTF-8" | sudo tee -a Arkbuild/root/.bashrc > /dev/null
+sudo chroot Arkbuild/ bash -c "update-locale LANG=en_US.UTF-8"
 sudo chroot Arkbuild/ systemctl enable NetworkManager
 
 # Install libmali, DRM, and GBM libraries for ${CHIPSET}

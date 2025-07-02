@@ -111,8 +111,11 @@ sudo chroot Arkbuild/ bash -c "ln -sf /usr/share/zoneinfo/America/New_York /etc/
 
 # Various tools available through Options added here
 sudo mkdir -p Arkbuild/opt/system/Advanced
-sudo cp -R dArkOS_Tools/* Arkbuild/opt/system/
+sudo cp dArkOS_Tools/*.sh Arkbuild/opt/system/
+sudo cp dArkOS_Tools/${CHIPSET}/*.sh Arkbuild/opt/system/Advanced/
+sudo cp dArkOS_Tools/Advanced/*.sh Arkbuild/opt/system/Advanced/
 sudo chroot Arkbuild/ bash -c "chown -R ark:ark /opt"
+sudo mv Arkbuild/opt/system/Advanced/Bluetooth.sh Arkbuild/opt/system/
 sudo chmod -R 777 Arkbuild/opt/system/
 
 # Copy performance scripts
@@ -125,6 +128,10 @@ options 8821cs rtw_power_mgnt=0 rtw_enusbss=0 rtw_ips_mode=0
 EOF
 
 # Copy various other backend tools
+sudo cp -R scripts/.asoundbackup/ Arkbuild/usr/local/bin/
+sudo cp -R scripts/freej2me_files/ Arkbuild/usr/local/bin/
+sudo cp scripts/controllerTester Arkbuild/usr/local/bin/
+sudo cp scripts/round_end.wav Arkbuild/usr/local/bin/
 sudo cp scripts/checkbrightonboot Arkbuild/usr/local/bin/
 sudo cp scripts/current_* Arkbuild/usr/local/bin/
 sudo cp scripts/finish.sh Arkbuild/usr/local/bin/
@@ -132,16 +139,10 @@ sudo cp scripts/pause.sh Arkbuild/usr/local/bin/
 sudo cp scripts/speak_bat_life.sh Arkbuild/usr/local/bin/
 sudo cp scripts/spktoggle.sh Arkbuild/usr/local/bin/
 sudo cp scripts/volume.sh Arkbuild/usr/local/bin/
-sudo cp scripts/hdmi-test.sh Arkbuild/usr/local/bin/
-sudo cp scripts/panel_set.sh Arkbuild/usr/local/bin/
-sudo cp scripts/panel_id.sh Arkbuild/usr/local/bin/
+sudo cp scripts/${CHIPSET}/* Arkbuild/usr/local/bin/
 sudo cp scripts/timezones Arkbuild/usr/local/bin/
-sudo cp scripts/Sleep* Arkbuild/usr/local/bin/
-sudo cp scripts/Switch* Arkbuild/usr/local/bin/
-sudo cp scripts/Fix* Arkbuild/usr/local/bin/
 sudo cp global/* Arkbuild/usr/local/bin/
-sudo cp device/rk3566/uboot.img.anbernic Arkbuild/usr/local/bin/
-sudo mv device/rk3566/uboot.img.jelos Arkbuild/usr/local/bin/uboot.img.jelos
+sudo cp device/${CHIPSET}/uboot.img.anbernic Arkbuild/usr/local/bin/
 
 # Make all scripts in /usr/local/bin executable, world style
 sudo chmod 777 Arkbuild/usr/local/bin/*
@@ -164,6 +165,27 @@ echo "export SDL_VIDEO_EGL_DRIVER=libEGL.so" | sudo tee Arkbuild/etc/profile.d/S
 echo "$NAME" | sudo tee Arkbuild/home/ark/.config/.DEVICE
 
 # Set the locale
+
+# Clone some themes to the tempthemes folder
+sudo mkdir Arkbuild/tempthemes
+if [ "$UNIT" == "rgb30" ]; then
+  sudo git clone --depth=1 https://github.com/Jetup13/es-theme-freeplay.git Arkbuild/tempthemes/es-theme-freeplay
+  sudo git clone --depth=1 https://github.com/Jetup13/es-theme-sagabox.git Arkbuild/tempthemes/es-theme-sagabox
+  sudo git clone --depth=1 https://github.com/Jetup13/es-theme-switch.git Arkbuild/tempthemes/es-theme-switch
+  sudo git clone --depth=1 https://github.com/Jetup13/es-theme-simply-basic.git Arkbuild/tempthemes/es-theme-simply-basic
+  sudo git clone --depth=1 https://github.com/Jetup13/es-theme-sagamodern.git Arkbuild/tempthemes/es-theme-sagamodern
+  sudo git clone --depth=1 https://github.com/Jetup13/es-theme-saganx.git Arkbuild/tempthemes/es-theme-saganx
+  sudo git clone --depth=1 https://github.com/dani7959/es-theme-replica.git Arkbuild/tempthemes/es-theme-replica
+else
+  if [[ "$UNIT" == *"rgb10"* ]] || [[ "$UNIT" == "rk2020" ]] || [[ "$UNIT" == *"oga"* ]]; then
+    sudo git clone --depth=1 https://github.com/pix33l/es-theme-pixui.git
+  fi
+  sudo git clone --depth=1 https://github.com/Jetup13/es-theme-freeplay.git Arkbuild/tempthemes/es-theme-freeplay
+  sudo git clone --depth=1 https://github.com/Jetup13/es-theme-minimal-arkos.git Arkbuild/tempthemes/es-theme-minimal-arkos
+  sudo git clone --depth=1 https://github.com/Jetup13/es-theme-nes-box.git Arkbuild/tempthemes/es-theme-nes-box
+  sudo git clone --depth=1 https://github.com/Jetup13/es-theme-switch.git Arkbuild/tempthemes/es-theme-switch
+  sudo git clone --depth=1 https://github.com/dani7959/es-theme-replica.git Arkbuild/tempthemes/es-theme-replica
+fi
 
 sudo umount ${mountpoint}
 
@@ -188,13 +210,13 @@ sudo cp -a scummvm/menu.scummvm ${fat32_mountpoint}/scummvm/
 
 # Clone some themes to the roms/themes folder
 sudo git clone https://github.com/Jetup13/es-theme-nes-box.git ${fat32_mountpoint}/themes/es-theme-nes-box
-sync
+sync ${fat32_mountpoint}
 
 # Create roms.tar for use after exfat partition creation
 sudo tar -C mnt/ -cvf Arkbuild/roms.tar roms
 
 # Remove and cleanup fat32 roms mountpoint
 sudo chmod -R 755 ${fat32_mountpoint}
-sync
+sync ${fat32_mountpoint}
 
 sudo rm -rf ${fat32_mountpoint}

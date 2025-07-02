@@ -49,6 +49,8 @@ function setup_ark_user() {
   for dir in "${directories[@]}"; do
     sudo mkdir -p "${CHROOT_DIR}/home/ark/${dir}"
   done
+  echo -e "export LC_All=en_US.UTF-8" | sudo tee -a ${CHROOT_DIR}/home/ark/.bashrc > /dev/null
+  echo -e "export LC_CTYPE=en_US.UTF-8" | sudo tee -a ${CHROOT_DIR}/home/ark/.bashrc > /dev/null
   sudo chroot ${CHROOT_DIR}/ chown -R ark:ark /home/ark/
 }
 

@@ -1,8 +1,10 @@
 # Game system folders to be created are listed below
 alg
+apple2
 arcade
 atomiswave
 bios
+coco3
 cps1
 cps2
 cps3
@@ -17,6 +19,7 @@ n64
 naomi
 neogeo
 nes
+openbor
 pico-8/carts
 psp
 pspminis

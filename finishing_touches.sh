@@ -25,7 +25,7 @@ fi
 booti \${loadaddr} \${initrd_loadaddr} \${dtb_loadaddr}
 EOF
 
-sudo cp logo.bmp ${mountpoint}/
+sudo cp logos/oga/logo.bmp ${mountpoint}/
 sudo cp optional/* ${mountpoint}/
 
 # Tell systemd to ignore PowerKey presses.  Let the Global Hotkey daemon handle that
@@ -113,7 +113,12 @@ sudo chroot Arkbuild/ bash -c "ln -sf /usr/share/zoneinfo/America/New_York /etc/
 
 # Various tools available through Options added here
 sudo mkdir -p Arkbuild/opt/system/Advanced
-sudo cp -R dArkOS_Tools/* Arkbuild/opt/system/
+sudo cp dArkOS_Tools/*.sh Arkbuild/opt/system/
+sudo cp dArkOS_Tools/${CHIPSET}/*.sh Arkbuild/opt/system/Advanced/
+sudo cp dArkOS_Tools/Advanced/*.sh Arkbuild/opt/system/Advanced/
+if [[ "$UNIT" == *"rgb10"* ]] || [[ "$UNIT" == "rk2020" ]] || [[ "$UNIT" == *"oga"* ]]; then
+  sudo cp dArkOS_Tools/OGA/*.sh Arkbuild/opt/system/Advanced/
+fi
 sudo chroot Arkbuild/ bash -c "chown -R ark:ark /opt"
 sudo chmod -R 777 Arkbuild/opt/system/
 
@@ -154,6 +159,17 @@ if [ "$CHIPSET" == "rk3326" ]; then
 fi
 
 # Set the locale
+
+# Clone some themes to the tempthemes folder
+sudo mkdir Arkbuild/tempthemes
+if [[ "$UNIT" == *"rgb10"* ]] || [[ "$UNIT" == "rk2020" ]] || [[ "$UNIT" == *"oga"* ]]; then
+  sudo git clone https://github.com/pix33l/es-theme-pixui.git
+fi
+sudo git clone --depth=1 https://github.com/Jetup13/es-theme-freeplay.git Arkbuild/tempthemes/es-theme-freeplay
+sudo git clone --depth=1 https://github.com/Jetup13/es-theme-minimal-arkos.git Arkbuild/tempthemes/es-theme-minimal-arkos
+sudo git clone --depth=1 https://github.com/Jetup13/es-theme-nes-box.git Arkbuild/tempthemes/es-theme-nes-box
+sudo git clone --depth=1 https://github.com/Jetup13/es-theme-switch.git Arkbuild/tempthemes/es-theme-switch
+sudo git clone --depth=1 https://github.com/dani7959/es-theme-replica.git Arkbuild/tempthemes/es-theme-replica
 
 sudo umount ${mountpoint}
 sudo losetup -d ${LOOP_BOOT}
