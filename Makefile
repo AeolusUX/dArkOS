@@ -10,25 +10,33 @@ ifeq ($(DEBIAN_CODE_NAME),)
   $(error DEBIAN_CODE_NAME is not set. Please run with DEBIAN_CODE_NAME=suite (e.g., bookworm))
 endif
 
-$(info dArkOS will be built using the $(DEBIAN_CODE_NAME) release of Debian.)
-$(info debian building caching enabled? ${ENABLE_CACHE}.)
 
 all:
 	@echo "Please specify a valid build target: make rgb10 or make rg353m"
 
 rgb10:
+	$(info dArkOS will be built using the $(DEBIAN_CODE_NAME) release of Debian.)
+	$(info debian building caching enabled? ${ENABLE_CACHE}.)
 	./build_rgb10.sh
 
 rg353m:
+	$(info dArkOS will be built using the $(DEBIAN_CODE_NAME) release of Debian.)
+	$(info debian building caching enabled? ${ENABLE_CACHE}.)
 	./build_rg353m.sh
 
 rg503:
+	$(info dArkOS will be built using the $(DEBIAN_CODE_NAME) release of Debian.)
+	$(info debian building caching enabled? ${ENABLE_CACHE}.)
 	./build_rg503.sh
 
 devenv:
+	$(info dArkOS will be built using the $(DEBIAN_CODE_NAME) release of Debian.)
+	$(info debian building caching enabled? ${ENABLE_CACHE}.)
 	./build_devenv.sh
 
 devenv32:
+	$(info dArkOS will be built using the $(DEBIAN_CODE_NAME) release of Debian.)
+	$(info debian building caching enabled? ${ENABLE_CACHE}.)
 	./build_devenv.sh 32
 
 clean:

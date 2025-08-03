@@ -127,8 +127,8 @@ function remove_arkbuild() {
     fi
   done
   sudo rm -rf Arkbuild/home/ark/Arkbuild_ccache
-  [ -d "Arkbuild" ] && sudo umount -l Arkbuild
-  [ -d "Arkbuild-final" ] && sudo umount -l Arkbuild-final
+  (cat /proc/mounts | grep -qs "Arkbuild") && sudo umount -l Arkbuild
+  (cat /proc/mounts | grep -qs "Arkbuild-final") && sudo umount -l Arkbuild-final
   return 0
 }
 
@@ -142,7 +142,8 @@ function remove_arkbuild32() {
       sleep 1
     fi
   done
-  [ -d "Arkbuild32" ] && sudo umount -l Arkbuild32
+  (cat /proc/mounts | grep -qs "Arkbuild32") && sudo umount -l Arkbuild32
+  [ -d "Arkbuild32" ] && sudo rm -rf Arkbuild32
   return 0
 }
 

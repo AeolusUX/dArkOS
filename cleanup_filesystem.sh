@@ -129,10 +129,13 @@ call_chroot "ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.${extension} 
 call_chroot "ln -sfv /usr/lib/aarch64-linux-gnu/bin/sdl2-config /usr/bin/sdl2-config"
 # Ensure sdl-image is symlinked properly
 call_chroot "rm /lib/libSDL_image-1.2.so.0"
+call_chroot "rm /libSDL_image-1.2.so.0"
 call_chroot "ln -sf $(find /lib/ -name libSDL_image-1.2.so.0.* | head -n 1) /lib/libSDL_image-1.2.so.0"
 call_chroot "ldconfig"
 
-sudo umount -l Arkbuild/home/ark/Arkbuild_ccache
+if grep -qs "Arkbuild/home/ark/Arkbuild_ccache" /proc/mounts; then
+  sudo umount -l Arkbuild/home/ark/Arkbuild_ccache
+fi
 sudo rm -rf Arkbuild/home/ark/Arkbuild_ccache
 sudo rm -rf Arkbuild/var/log/journal
 sudo rm Arkbuild/usr/sbin/policy-rc.d
