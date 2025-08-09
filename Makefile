@@ -16,37 +16,37 @@ all:
 
 rgb10:
 	$(info dArkOS will be built using the $(DEBIAN_CODE_NAME) release of Debian.)
-	$(info debian building caching enabled? ${ENABLE_CACHE}.)
+	$(info debian building caching enabled? ${ENABLE_CACHE})
 	@sleep 5
 	./build_rgb10.sh
 
 rg351mp:
 	$(info dArkOS will be built using the $(DEBIAN_CODE_NAME) release of Debian.)
-	$(info debian building caching enabled? ${ENABLE_CACHE}.)
+	$(info debian building caching enabled? ${ENABLE_CACHE})
 	@sleep 5
 	./build_rg351mp.sh
 
 rg353m:
 	$(info dArkOS will be built using the $(DEBIAN_CODE_NAME) release of Debian.)
-	$(info debian building caching enabled? ${ENABLE_CACHE}.)
+	$(info debian building caching enabled? ${ENABLE_CACHE})
 	@sleep 5
 	./build_rg353m.sh
 
 rg503:
 	$(info dArkOS will be built using the $(DEBIAN_CODE_NAME) release of Debian.)
-	$(info debian building caching enabled? ${ENABLE_CACHE}.)
+	$(info debian building caching enabled? ${ENABLE_CACHE})
 	@sleep 5
 	./build_rg503.sh
 
 devenv:
 	$(info dArkOS will be built using the $(DEBIAN_CODE_NAME) release of Debian.)
-	$(info debian building caching enabled? ${ENABLE_CACHE}.)
+	$(info debian building caching enabled? ${ENABLE_CACHE})
 	@sleep 5
 	./build_devenv.sh
 
 devenv32:
 	$(info dArkOS will be built using the $(DEBIAN_CODE_NAME) release of Debian.)
-	$(info debian building caching enabled? ${ENABLE_CACHE}.)
+	$(info debian building caching enabled? ${ENABLE_CACHE})
 	@sleep 5
 	./build_devenv.sh 32
 

@@ -46,6 +46,7 @@ source ./build_mednafen.sh
 source ./build_ecwolfsa.sh
 source ./build_hypseus-singe.sh
 source ./build_openbor.sh
+source ./build_solarus.sh
 source ./build_scummvmsa.sh
 source ./build_fake08.sh
 source ./build_xroar.sh

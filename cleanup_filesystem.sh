@@ -32,6 +32,7 @@ call_chroot "apt remove -y autotools-dev \
   libfribidi-dev \
   libglew-dev \
   libjpeg62-turbo-dev \
+  libluajit-5.1-dev \
   libmad0-dev \
   libmpeg2-4-dev \
   libncurses-dev \
@@ -40,6 +41,7 @@ call_chroot "apt remove -y autotools-dev \
   libnl-route-3-dev \
   libogg-dev \
   libopenal-dev \
+  libphysfs-dev \
   libpng-dev \
   libsdl2-dev \
   libsdl2-gfx-dev \

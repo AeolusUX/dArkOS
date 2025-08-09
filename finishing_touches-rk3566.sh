@@ -248,7 +248,16 @@ else
   sudo git clone --depth=1 https://github.com/dani7959/es-theme-replica.git Arkbuild/tempthemes/es-theme-replica
 fi
 
-sudo umount ${mountpoint}
+sync
+sudo umount -l ${mountpoint}
+#while true; do
+  #sleep 1
+  #if [[ -z "$(fuser -c ${mountpoint})" ]]; then
+    #break
+  #fi
+  #echo "${mountpoint} is still in use.  Attempting to force close processes using it..."
+  #sudo fuser -ckv -9 ${mountpoint}
+#done
 
 fat32_mountpoint=mnt/roms
 mkdir -p ${fat32_mountpoint}
@@ -272,13 +281,13 @@ sudo cp -a scummvm/scripts/menu.scummvm ${fat32_mountpoint}/scummvm/
 
 # Clone some themes to the roms/themes folder
 sudo git clone https://github.com/Jetup13/es-theme-nes-box.git ${fat32_mountpoint}/themes/es-theme-nes-box
-sync ${fat32_mountpoint}
+sync
 
 # Create roms.tar for use after exfat partition creation
 sudo tar -C mnt/ -cvf Arkbuild/roms.tar roms
 
 # Remove and cleanup fat32 roms mountpoint
 sudo chmod -R 755 ${fat32_mountpoint}
-sync ${fat32_mountpoint}
+sync
 
 sudo rm -rf ${fat32_mountpoint}

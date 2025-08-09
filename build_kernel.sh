@@ -34,7 +34,7 @@ BOOT_PART_OFFSET=$((SYSTEM_PART_START * 512))
 BOOT_PART_SIZE=$(( (SYSTEM_PART_END - SYSTEM_PART_START + 1) * 512 ))
 LOOP_BOOT=$(sudo losetup --find --show --offset ${BOOT_PART_OFFSET} --sizelimit ${BOOT_PART_SIZE} ${DISK})
 sudo mkfs.vfat -F 32 -n BOOT ${LOOP_BOOT}
-mountpoint=mnt/boot
+mountpoint="mnt/boot"
 mkdir -p ${mountpoint}
 sudo mount ${LOOP_BOOT} ${mountpoint}
 
@@ -44,7 +44,7 @@ sudo cp $KERNEL_SRC/.config Arkbuild/boot/config-${KERNEL_VERSION}
 sudo cp $KERNEL_SRC/arch/arm64/boot/Image ${mountpoint}/
 sudo cp $KERNEL_SRC/arch/arm64/boot/dts/rockchip/${KERNEL_DTB} ${mountpoint}/
 if [ "$UNIT" == "rg351mp" ]; then
-  sudo cp /tmp/${UNIT}-kernel.dtb ${mountpoint}/
+  sudo cp /tmp/${UNIT}-kernel.dtb ${mountpoint}/.
   sudo rm /tmp/${UNIT}-kernel.dtb
 fi
 

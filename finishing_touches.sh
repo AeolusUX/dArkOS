@@ -146,7 +146,7 @@ sudo cp scripts/speak_bat_life.sh Arkbuild/usr/local/bin/
 sudo cp scripts/spktoggle.sh Arkbuild/usr/local/bin/
 sudo cp scripts/timezones Arkbuild/usr/local/bin/
 sudo cp global/* Arkbuild/usr/local/bin/
-if [[ "$UNIT" == "rgb10" ]]
+if [[ "$UNIT" == "rgb10" ]]; then
   sudo cp device/rgb10/* Arkbuild/usr/local/bin/
 fi
 
@@ -236,7 +236,16 @@ sudo git clone --depth=1 https://github.com/Jetup13/es-theme-nes-box.git Arkbuil
 sudo git clone --depth=1 https://github.com/Jetup13/es-theme-switch.git Arkbuild/tempthemes/es-theme-switch
 sudo git clone --depth=1 https://github.com/dani7959/es-theme-replica.git Arkbuild/tempthemes/es-theme-replica
 
-sudo umount ${mountpoint}
+sync
+sudo umount -l ${mountpoint}
+#while true; do
+  #sleep 1
+  #if [[ -z "$(fuser -c ${mountpoint})" ]]; then
+    #break
+  #fi
+  #echo "${mountpoint} is still in use.  Attempting to force close processes using it..."
+  #sudo fuser -ckv -9 ${mountpoint}
+#done
 sudo losetup -d ${LOOP_BOOT}
 
 # Format rootfs partition in final image

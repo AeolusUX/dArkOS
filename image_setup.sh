@@ -10,7 +10,7 @@ parted -s "${DISK}" mklabel msdos
 parted -s "${DISK}" -a min unit s mkpart primary fat32 ${SYSTEM_PART_START} ${SYSTEM_PART_END}
 parted -s "${DISK}" set 1 boot on
 parted -s "${DISK}" -a min unit s mkpart primary ${ROOT_FILESYSTEM_FORMAT} ${STORAGE_PART_START} ${STORAGE_PART_END}
-parted -s "${DISK}" set 2 lba off
+#parted -s "${DISK}" set 2 lba off
 parted -s "${DISK}" -a min unit s mkpart primary fat32 ${ROM_PART_START} ${ROM_PART_END}
 sync
 
@@ -28,6 +28,6 @@ cd u-boot-${CHIPSET}
 dd if="sd_fuse/idbloader.img" of="../${DISK}" bs=512 seek=64 conv=sync,noerror,notrunc
 dd if="sd_fuse/uboot.img" of="../${DISK}" bs=512 seek=16384 conv=sync,noerror,notrunc
 dd if="sd_fuse/trust.img" of="../${DISK}" bs=512 seek=24576 conv=sync,noerror,notrunc
-cp arch/arm64/boot/dts/rockchip/${UNIT}-kernel.dtb /tmp/
+cp arch/arm/dts/${UNIT}-kernel.dtb /tmp/
 cd ..
 rm -rf u-boot-${CHIPSET}

@@ -14,12 +14,14 @@ libeigen3-dev
 libevdev-dev
 libfreeimage-dev
 libfreetype6-dev
+libluajit-5.1-dev
 libncurses-dev
 libnl-3-dev
 libnl-genl-3-dev
 libnl-route-3-dev
 libogg-dev
 libopenal-dev
+libphysfs-dev
 libpng-dev
 libsdl2-gfx-dev
 libsdl2-image-dev

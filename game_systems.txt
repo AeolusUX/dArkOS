@@ -55,6 +55,7 @@ sega32x
 segacd
 sg-1000
 sgb
+solarus
 snes
 snesmsu1
 themes
