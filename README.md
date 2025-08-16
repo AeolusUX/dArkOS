@@ -4,7 +4,7 @@
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/donate?hosted_button_id=RC72LJ4SSERSU)
 
-The overarching goals of ArkOS is as follows:
+The overarching goals of dArkOS is as follows:
 1. Highly customizable 
 1. Performance
 1. Online Updates (Won't require SD card reflashing unless there are major structural changes like file system changes.)
@@ -30,3 +30,7 @@ Now you should be able to just run make <device_name> to build for a supported d
 **Notes**
 - To build on a different release of Debian, change the DEBIAN_CODE_NAME export in the Makefile.  Other debian code names can be found at https://www.debian.org/releases/
 - Initial build time on an Intel I7-8700U unit with a 512GB NVME SSD and 32GB of DDR4 memory is a little over 19 hours.  Subsequent builds are about 6 hours thanks to ccache.
+
+# Credits and Thanks
+TheGreatCrippler for testing and feedback
+PortMaster team for support in figuring out PM interface issues
