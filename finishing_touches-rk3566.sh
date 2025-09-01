@@ -170,6 +170,7 @@ sudo cp scripts/BaRT_QuickMode.sh Arkbuild/usr/local/bin/
 sudo cp scripts/"Enable Quick Mode".sh Arkbuild/usr/local/bin/
 sudo cp scripts/arkos_ap_mode.sh Arkbuild/usr/local/bin/
 sudo cp scripts/auto_suspend* Arkbuild/usr/local/bin/
+sudo cp scripts/processcheck.sh Arkbuild/usr/local/bin/
 sudo cp scripts/autosuspend.service Arkbuild/etc/systemd/system/
 sudo chroot Arkbuild/ bash -c "pip install --break-system-packages --root-user-action ignore inputs"
 sudo chroot Arkbuild/ bash -c "systemctl disable autosuspend"
