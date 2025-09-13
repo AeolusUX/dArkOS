@@ -40,6 +40,9 @@ if [ "$UNIT" == "503" ]; then
   cp $KERNEL_SRC/arch/arm64/boot/dts/rockchip/rk3566.dtb $KERNEL_SRC/arch/arm64/boot/dts/rockchip/${UNIT_DTB}.dtb
 else
   sudo cp $KERNEL_SRC/arch/arm64/boot/dts/rockchip/${UNIT_DTB}.dtb ${mountpoint}/
+  if [ "$UNIT" == "rgb30" ]; then
+    sudo cp $KERNEL_SRC/arch/arm64/boot/dts/rockchip/${UNIT_DTB}-v2.dtb ${mountpoint}/
+  fi
 fi
 
 # Create uInitrd from generated initramfs

@@ -17,7 +17,7 @@ if [[ -z $(pgrep -f gptokeyb) ]] && [[ -z $(pgrep -f oga_controls) ]]; then
   if [[ ! -z $(cat /etc/emulationstation/es_input.cfg | grep "190000004b4800000010000001010000") ]] || [[ -e "/dev/input/by-path/platform-gameforce-gamepad-event-joystick" ]]; then
     export HOTKEY="l3"
   fi
-  /opt/inttools/gptokeyb -1 "controllerTeste" -c "/opt/inttools/keys.gptk" > /dev/null &
+  /opt/inttools/gptokeyb -1 "controllerTester" -c "/opt/inttools/keys.gptk" > /dev/null &
   disown
   set_gptokeyb="Y"
 fi
