@@ -17,7 +17,7 @@ elif [[ "$UNIT" == *"353"* ]]; then
   branch="rg353v"
 elif [[ "$UNIT" == "503" ]]; then
   branch="rg503"
-elif [ "$UNIT" == "rk2023" ]; then
+elif [ "$UNIT" == "rk2023" ] || [ "$UNIT" == "rgb30" ]; then
   branch="rk2023"
 fi
 call_chroot "cd /home/ark &&

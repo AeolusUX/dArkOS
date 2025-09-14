@@ -5,10 +5,12 @@ if [ "$UNIT" == "rgb10" ]; then
   BUILD_UNIT="RGB10"
 elif [ "$UNIT" == "rg351mp" ] || [ "$UNIT" == "g350" ]; then
   BUILD_UNIT="RG351MP"
-elif [[ "$UNIT" == *"353"* ]]; then
+elif [[ "$UNIT" == *"353"* ]] || [[ "$UNIT" == "rk2023" ]]; then
   BUILD_UNIT="RG353V"
 elif [[ "$UNIT" == "503" ]]; then
   BUILD_UNIT="RG503"
+elif [[ "$UNIT" == "rgb30" ]]; then
+  BUILD_UNIT="RGB30"
 fi
 call_chroot "cd /home/ark &&
   git clone --recursive https://github.com/christianhaitian/351Files.git &&

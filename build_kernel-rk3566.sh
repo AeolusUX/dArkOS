@@ -12,21 +12,19 @@ if [ ! -d "$KERNEL_SRC" ]; then
   fi
 fi
 cd $KERNEL_SRC
-make ARCH=arm64 rk3566_optimized_linux_defconfig
-CFLAGS=-Wno-deprecated-declarations make -j$(nproc) ARCH=arm64 KERNEL_DTS=rk3566 KERNEL_CONFIG=rk3566_optimized_linux_defconfig
-#CFLAGS=-Wno-deprecated-declarations make -j$(nproc) ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- modules_prepare
-#CFLAGS=-Wno-deprecated-declarations make -j$(nproc) ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image dtbs modules
+if [ "$UNIT" != "503" ] && [[ "$UNIT" != *"353"* ]]; then
+  make ARCH=arm64 rk3566_optimized_with_wifi_linux_defconfig
+  CFLAGS=-Wno-deprecated-declarations make -j$(nproc) ARCH=arm64 KERNEL_DTS=rk3566 KERNEL_CONFIG=rk3566_optimized_with_wifi_linux_defconfig
+else
+  make ARCH=arm64 rk3566_optimized_linux_defconfig
+  CFLAGS=-Wno-deprecated-declarations make -j$(nproc) ARCH=arm64 KERNEL_DTS=rk3566 KERNEL_CONFIG=rk3566_optimized_linux_defconfig
+fi
 verify_action
 cd ..
 
 # Install kernel modules
 sudo make -C $KERNEL_SRC ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- INSTALL_MOD_PATH=../Arkbuild modules_install
 
-# Format boot partition
-#BOOT_PART_OFFSET=$((SYSTEM_PART_START * 512))
-#BOOT_PART_SIZE=$(( (SYSTEM_PART_END - SYSTEM_PART_START + 1) * 512 ))
-#LOOP_BOOT=$(sudo losetup --find --show --offset ${BOOT_PART_OFFSET} --sizelimit ${BOOT_PART_SIZE} ${DISK})
-#sudo mkfs.vfat -F 32 -n BOOT ${LOOP_BOOT}
 mountpoint=mnt/boot
 mkdir -p ${mountpoint}
 sudo mount ${LOOP_DEV}p3 ${mountpoint}

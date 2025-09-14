@@ -629,7 +629,7 @@ class OSK:
 def parse_arguments(args):
     parser = ArgumentParser(description="Reads a string using an On Screen Keyboard")
 
-    parser.add_argument('--backtitle', type=str, help='Window title', default="ArkOS", required=False)
+    parser.add_argument('--backtitle', type=str, help='Window title', default="dArkOS", required=False)
     parser.add_argument('--inputbox', type=str, help='Name of the string being captured', required=False)
     parser.add_argument(
         '--minchars', type=int, nargs='?',

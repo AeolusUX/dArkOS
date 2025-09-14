@@ -10,7 +10,7 @@ elif [ "$UNIT" == "rg351mp" ] || [ "$UNIT" == "g350" ]; then
 elif [ "$UNIT" == "rg351v" ]; then
   BRANCH="rg351mp"
   DEVICE_CONFIG="rg351v"
-elif [[ "$UNIT" == *"353"* ]]; then
+elif [[ "$UNIT" == *"353"* ]] || [[ "$UNIT" == "rgb30" ]] [[ "$UNIT" == "rgb20pro" ]]; then
   BRANCH="rg351mp"
   DEVICE_CONFIG="rk3566"
 elif [[ "$UNIT" == *"503"* ]]; then
