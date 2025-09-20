@@ -66,6 +66,8 @@ source ./build_piemu.sh
 source ./build_ti99sim.sh
 source ./build_openmsxsa.sh
 source ./build_dolphinsa.sh
+source ./build_sdljoytest.sh
+source ./build_controllertester.sh
 source ./build_drastic.sh
 if [[ "${BUILD_KODI}" == "y" ]]; then
   source ./build_kodi.sh

@@ -64,6 +64,8 @@ source ./build_applewinsa.sh
 source ./build_piemu.sh
 source ./build_ti99sim.sh
 source ./build_openmsxsa.sh
+source ./build_sdljoytest.sh
+source ./build_controllertester.sh
 source ./build_drastic.sh
 source ./finishing_touches.sh
 source ./cleanup_filesystem.sh

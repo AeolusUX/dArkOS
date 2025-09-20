@@ -165,7 +165,6 @@ sudo chroot Arkbuild/ bash -c "systemctl enable audiostate"
 # Copy various other backend tools
 sudo cp -R scripts/.asoundbackup/ Arkbuild/usr/local/bin/
 sudo cp -R scripts/freej2me_files/ Arkbuild/usr/local/bin/
-sudo cp scripts/controllerTester Arkbuild/usr/local/bin/
 sudo cp scripts/round_end.wav Arkbuild/usr/local/bin/
 sudo cp scripts/checkbrightonboot Arkbuild/usr/local/bin/
 sudo cp scripts/current_* Arkbuild/usr/local/bin/
