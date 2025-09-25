@@ -120,7 +120,11 @@ sudo chroot Arkbuild/ bash -c "ln -sf /usr/share/zoneinfo/America/New_York /etc/
 sudo mkdir -p Arkbuild/opt/system/Advanced
 sudo cp dArkOS_Tools/*.sh Arkbuild/opt/system/
 sudo cp dArkOS_Tools/${CHIPSET}/*.sh Arkbuild/opt/system/Advanced/
+sudo cp dArkOS_Tools/${CHIPSET}/"Enable Low Battery Warning".sh Arkbuild/usr/local/bin/
+sudo cp dArkOS_Tools/${CHIPSET}/"Disable Low Battery Warning".sh Arkbuild/usr/local/bin/
+sudo rm Arkbuild/opt/system/Advanced/"Enable Low Battery Warning".sh
 sudo cp dArkOS_Tools/Advanced/*.sh Arkbuild/opt/system/Advanced/
+sudo cp scripts/${CHIPSET}/"Fix Audio".sh Arkbuild/opt/system/Advanced/
 sudo cp scripts/"Switch to SD2 for Roms.sh" Arkbuild/opt/system/Advanced/
 sudo chroot Arkbuild/ bash -c "chown -R ark:ark /opt"
 sudo chmod -R 777 Arkbuild/opt/system/

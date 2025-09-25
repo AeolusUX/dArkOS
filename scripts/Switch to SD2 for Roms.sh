@@ -79,7 +79,7 @@ then
   sed -i '/roms\/bios/s//roms2\/bios/g' /opt/amiberry/conf/amiberry.conf
   sed -i '/.\/351Files 2/s//.\/351Files-sd2 2/g' /opt/system/351Files.sh
   sudo sed -i '/roms\//s//roms2\//g' /usr/local/bin/scummvm.sh
-  sudo cp /usr/local/bin/Switch\ to\ main\ SD\ for\ Roms.sh /opt/system/Advanced/.
+  sudo cp /usr/local/bin/Switch\ to\ Main\ SD\ for\ Roms.sh /opt/system/Advanced/.
   sudo rm /opt/system/Advanced/Switch\ to\ SD2\ for\ Roms.sh
   sudo tar --strip-components=1 -xvkf /roms.tar -C /roms2/
   #sudo mv -v -f -n /roms2/roms/* /roms2/
