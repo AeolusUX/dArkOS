@@ -50,7 +50,11 @@ sudo chroot ${CHROOT_DIR}/ bash -c "/usr/sbin/update-ccache-symlinks"
 sudo chroot ${CHROOT_DIR}/ bash -c "ln -s /usr/include/libdrm/ /usr/include/drm"
 
 # Place libmali manually (assumes you have libmali.so or mali drivers ready)
-for ARCHITECTURE in aarch64-linux-gnu arm-linux-gnueabihf
+ARCHITECTURE_ARRAY=("aarch64-linux-gnu")
+if [[ "${BUILD_ARMHF}" == "y" ]]; then
+  ARCHITECTURE_ARRAY+=("arm-linux-gnueabihf")
+fi
+for ARCHITECTURE in "${ARCHITECTURE_ARRAY[@]}"
 do
   if [ "$ARCHITECTURE" == "aarch64-linux-gnu" ]; then
     FOLDER="aarch64"

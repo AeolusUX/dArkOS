@@ -15,7 +15,7 @@ Don't feel like building the OS from scratch or don't have the resources to do s
 access to over 64,000 packages you can install via the Debian Advanced Package Tool (APT).  Want to build the latest testing or bleeding edge release of Debian? See the notes below on how to accomplish this.
 
 **Building instructions:**
-   - Suggested Environment - Ubuntu or related variants, version 24.04 or newer \
+   - Suggested Environment - Ubuntu or related variants, version 24.04 or newer.  Windows Subsystem for Linux (WSL) is not supported and will not work due to no support for chroot. \
      Because chroot is used in this process, heavy use of sudo is made.  To reduce the possibility of priviledge issues, \
      it's best to be able to execute sudo without needing a password.  This can be done using one of the 2 methods below.
       - Method 1: - Open a Terminal window and type `sudo visudo` \
@@ -28,9 +28,17 @@ access to over 64,000 packages you can install via the Debian Advanced Package T
 Now you should be able to just run make <device_name> to build for a supported device.  Example: `make rg353m`
 
 **Notes**
-- To build on a different release of Debian, change the DEBIAN_CODE_NAME export in the Makefile.  Other debian code names can be found at https://www.debian.org/releases/
+- To build on a different release of Debian, change the DEBIAN_CODE_NAME export in the Makefile or add DEBIAN_CODE_NAME=<release> as a variable to `make`.  Other debian code names can be found at https://www.debian.org/releases/
+- By default, this will build with both a 64bit and 32bit userspace.  This is primarily to support some 32bit ports available through PortMaster.  There are also some 32bit retroarch emulators available but the performance seems to be similar to the 64bit retroarch emulators at this point.
+ - To build without 32bit support, change the BUILD_ARMHF export in the Makefile to n or add BUILD_ARMHF=n as a variable to `make`.
+- For RK3566, you can add Kodi to your build.  Just change the BUILD_KODI export in the Makefile to y or add BUILD_KODI=y as a variavble to `make`.  Kodi is also available as a prepackaged build in the extra_packages/rk3566 subfolder.  Just copy it to your tools folder and launch from Options/Tools in the start menu.
+ - Be aware that building Kodi will add a significant amount of time to your build.  Could be double or triple the build time.
 - Initial build time on an Intel I7-8700U unit with a 512GB NVME SSD and 32GB of DDR4 memory is a little over 19 hours.  Subsequent builds are about 8 hours thanks to ccache.
 
 # Credits and Thanks
+ChatGPT for guidance on how to build a Debian image \
 TheGreatCrippler for testing and feedback \
+kloptops for testing and feedback \
+Fraxinus88 for testing and feedback \
+ImCoKeMaN for testing and feedback \
 PortMaster team for support in figuring out PM interface issues

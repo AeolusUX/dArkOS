@@ -8,6 +8,7 @@ BUILD_ARMHF ?= y
 export DEBIAN_CODE_NAME
 export ENABLE_CACHE
 export BUILD_KODI
+export BUILD_ARMHF
 
 ifeq ($(DEBIAN_CODE_NAME),)
   $(error DEBIAN_CODE_NAME is not set. Please run with DEBIAN_CODE_NAME=suite (e.g., trixie))
