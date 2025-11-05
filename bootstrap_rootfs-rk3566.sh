@@ -43,6 +43,7 @@ sudo chmod 0755 Arkbuild/usr/sbin/policy-rc.d
 sudo chroot Arkbuild/ mount -t proc proc /proc
 
 # Install base runtime packages
+sudo chroot Arkbuild/ eatmydata apt-get -y update
 sudo chroot Arkbuild/ eatmydata apt-get install -y btrfs-progs initramfs-tools sudo evtest network-manager systemd-sysv locales locales-all ssh dosfstools fluidsynth
 sudo chroot Arkbuild/ eatmydata apt-get install -y python3 python3-pip
 sudo sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' Arkbuild/etc/locale.gen
