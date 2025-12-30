@@ -145,6 +145,20 @@ if [[ "${BUILD_ARMHF}" == "y" ]]; then
   rm -f libjpeg8_8d1-2_armhf.deb
 fi
 
+# Get libavcodec.so.58 from Debian security for PortMaster compatibility
+wget -t 3 -T 60 --no-check-certificate http://security.debian.org/debian-security/pool/updates/main/f/ffmpeg/libavcodec58_4.3.9-0+deb11u1_arm64.deb
+dpkg --fsys-tarfile libavcodec58_4.3.9-0+deb11u1_arm64.deb | tar -xO ./usr/lib/aarch64-linux-gnu/libavcodec.so.58.91.100 > libavcodec.so.58
+sudo mv -f libavcodec.so.58 Arkbuild/usr/lib/aarch64-linux-gnu/
+call_chroot "chown root:root /usr/lib/aarch64-linux-gnu/libavcodec.so.58"
+rm -f libavcodec58_4.3.9-0+deb11u1_arm64.deb
+if [[ "${BUILD_ARMHF}" == "y" ]]; then
+  wget -t 3 -T 60 --no-check-certificate http://security.debian.org/debian-security/pool/updates/main/f/ffmpeg/libavcodec58_4.3.9-0+deb11u1_armhf.deb
+  dpkg --fsys-tarfile libavcodec58_4.3.9-0+deb11u1_armhf.deb | tar -xO ./usr/lib/arm-linux-gnueabihf/libavcodec.so.58.91.100 > libavcodec.so.58
+  sudo mv -f libavcodec.so.58 Arkbuild/usr/lib/arm-linux-gnueabihf/
+  call_chroot "chown root:root /usr/lib/arm-linux-gnueabihf/libavcodec.so.58"
+  rm -f libavcodec58_4.3.9-0+deb11u1_armhf.deb
+fi
+
 # Various tools available through Options added here
 sudo mkdir -p Arkbuild/opt/system/Advanced
 sudo cp dArkOS_Tools/*.sh Arkbuild/opt/system/
