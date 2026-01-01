@@ -16,7 +16,7 @@ else
 		  cd ${CHIPSET}_core_builds &&
 		  git clone --recursive --depth=1 https://github.com/ptitSeb/gl4es.git &&
 		  cd gl4es &&
-		  mk build &&
+		  mkdir build &&
 		  cd build &&
 		  cmake .. -DODROID=1 -DNOX11=1 -DNOEGL=1 -DCMAKE_BUILD_TYPE=RelWithDebInfo; make -j$(nproc) &&
 		  strip ../lib/* &&
