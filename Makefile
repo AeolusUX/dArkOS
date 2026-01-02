@@ -24,6 +24,13 @@ g350:
 	$(info adding armhf 32bit userspace? ${BUILD_ARMHF})
 	@sleep 5
 	./build_g350.sh
+	
+r36s:
+	$(info dArkOS will be built using the $(DEBIAN_CODE_NAME) release of Debian.)
+	$(info debian building caching enabled? ${ENABLE_CACHE})
+	$(info adding armhf 32bit userspace? ${BUILD_ARMHF})
+	@sleep 5
+	./build_r36s.sh	
 
 rgb10:
 	$(info dArkOS will be built using the $(DEBIAN_CODE_NAME) release of Debian.)

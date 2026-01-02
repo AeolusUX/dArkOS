@@ -17,7 +17,7 @@ sync
 
 
 # Build uboot and install it to the image
-if [ "$UNIT" == "rg351mp" ] || [ "$UNIT" == "g350" ]; then
+if [ "$UNIT" == "rg351mp" ] || [ "$UNIT" == "g350" ] || [ "$UNIT" == "r36s" ]; then
   git clone --depth=1 https://github.com/christianhaitian/RG351MP-u-boot u-boot-${CHIPSET}
 else
   git clone --depth=1 https://github.com/christianhaitian/u-boot-${CHIPSET}
@@ -28,7 +28,7 @@ cd u-boot-${CHIPSET}
 dd if="sd_fuse/idbloader.img" of="../${DISK}" bs=512 seek=64 conv=sync,noerror,notrunc
 dd if="sd_fuse/uboot.img" of="../${DISK}" bs=512 seek=16384 conv=sync,noerror,notrunc
 dd if="sd_fuse/trust.img" of="../${DISK}" bs=512 seek=24576 conv=sync,noerror,notrunc
-if [ "$UNIT" == "rg351mp" ] || [ "$UNIT" == "g350" ]; then
+if [ "$UNIT" == "rg351mp" ] || [ "$UNIT" == "g350" ] || [ "$UNIT" == "r36s" ]; then
   cp arch/arm/dts/rg351mp-uboot.dtb /tmp/
 fi
 cd ..

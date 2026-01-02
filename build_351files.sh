@@ -3,7 +3,7 @@
 # Build and install 351Files
 if [ "$UNIT" == "rgb10" ]; then
   BUILD_UNIT="RGB10"
-elif [ "$UNIT" == "rg351mp" ] || [ "$UNIT" == "g350" ]; then
+elif [ "$UNIT" == "rg351mp" ] || [ "$UNIT" == "g350" ] || [ "$UNIT" == "r36s" ]; then
   BUILD_UNIT="RG351MP"
 elif [[ "$UNIT" == *"353"* ]] || [[ "$UNIT" == "rk2023" ]]; then
   BUILD_UNIT="RG353V"

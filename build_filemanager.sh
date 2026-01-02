@@ -4,7 +4,7 @@
 if [ "$UNIT" == "rgb10" ]; then
   BRANCH="master"
   DEVICE_CONFIG="rk3326"
-elif [ "$UNIT" == "rg351mp" ] || [ "$UNIT" == "g350" ]; then
+elif [ "$UNIT" == "rg351mp" ] || [ "$UNIT" == "g350" ] || [ "$UNIT" == "r36s" ]; then
   BRANCH="rg351mp"
   DEVICE_CONFIG="rg351mp"
 elif [ "$UNIT" == "rg351v" ]; then

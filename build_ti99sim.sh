@@ -3,7 +3,7 @@
 # Build and install ti99sim standalone emulator
 if [ "$UNIT" == "rgb10" ]; then
   BUILD_UNIT="rgb10"
-elif [ "$UNIT" == "rg351mp" ] || [ "$UNIT" == "g350" ]; then
+elif [ "$UNIT" == "rg351mp" ] || [ "$UNIT" == "g350" ] || [ "$UNIT" == "r36s" ]; then
   BUILD_UNIT="rg351mp"
 elif [ "$CHIPSET" == "rk3566" ]; then
   BUILD_UNIT="rg503"

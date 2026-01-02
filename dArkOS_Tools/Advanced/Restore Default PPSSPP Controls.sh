@@ -4,7 +4,7 @@ DEVICE=""
 
 if [ -f "/boot/rk3326-rg351v-linux.dtb" ]; then
   DEVICE="RG351V"
-elif [ -f "/boot/rk3326-rg351mp-linux.dtb" ] || [ -f "/boot/rk3326-g350-linux.dtb" ]; then
+elif [ -f "/boot/rk3326-rg351mp-linux.dtb" ] || [ -f "/boot/rk3326-g350-linux.dtb" ] || [ -f "/boot/rk3326-r36s-linux.dtb" ]; then
   DEVICE="RG351MP"
 elif [ -f "/boot/rk3326-gameforce-linux.dtb" ]; then
   DEVICE="Gameforce Chi"
