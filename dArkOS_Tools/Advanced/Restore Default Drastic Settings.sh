@@ -8,7 +8,7 @@ if [ -f "/boot/rk3326-rg351v-linux.dtb" ]; then
   CONFIG="drastic.cfg.351v"
 elif [ -f "/boot/rk3326-rg351mp-linux.dtb" ] || [ -f "/boot/rk3326-g350-linux.dtb" ]; then
   DEVICE="RG351MP"
-  CONFIG="drastic.cfg.351mp"
+  CONFIG="drastic.cfg.rg351mp"
 elif [ -f "/boot/rk3326-gameforce-linux.dtb" ]; then
   DEVICE="Gameforce Chi"
   CONFIG="drastic.cfg.chi"

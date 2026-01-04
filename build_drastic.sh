@@ -10,9 +10,9 @@ sudo mkdir -p Arkbuild/opt/drastic/scripts
 sudo mkdir -p Arkbuild/opt/drastic/system
 sudo mkdir -p Arkbuild/opt/drastic/unzip_cache
 sudo cp drastic/configs/drastic.cfg.${UNIT} Arkbuild/opt/drastic/config/drastic.cfg
-sudo cp drastic/config/drastic.cf2 Arkbuild/opt/drastic/config/drastic.cf2
 sudo cp drastic/drastic_logo* Arkbuild/opt/drastic/.
 sudo cp drastic/usrcheat.dat Arkbuild/opt/drastic/.
+sudo cp drastic/game_database.xml Arkbuild/opt/drastic/.
 sudo cp -R drastic/system/ Arkbuild/opt/drastic/
 sudo cp -R drastic/configs/ Arkbuild/opt/drastic/config/backup/
 sudo cp drastic/bin/drastic Arkbuild/opt/drastic/
