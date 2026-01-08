@@ -59,6 +59,7 @@ mbrola
 mbrola-us1
 mbrola-us2
 mbrola-us3
+netcat
 ntfs-3g
 p7zip-full
 premake4
