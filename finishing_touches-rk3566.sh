@@ -448,7 +448,7 @@ sudo cp launchimages/loading.jpg.${UNIT} ${fat32_mountpoint}/launchimages/loadin
 # Copy various tools to roms folders
 sudo cp -a ecwolf/Scan* ${fat32_mountpoint}/wolf/
 sudo cp -a scummvm/scripts/Scan* ${fat32_mountpoint}/scummvm/
-sudo cp -a hypseus-singe/scripts/Scan* ${fat32_mountpoint}/scummvm/
+sudo cp -a hypseus-singe/scripts/Scan* ${fat32_mountpoint}/alg/
 sudo cp -a scummvm/scripts/menu.scummvm ${fat32_mountpoint}/scummvm/
 
 # Clone some themes to the roms/themes folder
