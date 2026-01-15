@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Build and install Kodi
-KODI_VERSION_TAG=21.2-Omega
+KODI_VERSION_TAG=21.3-Omega
 # Install additional Kodi build dependencies
 if test -z "$(cat Arkbuild/etc/apt/sources.list | grep ${DEBIAN_CODE_NAME}-backports)"
 then

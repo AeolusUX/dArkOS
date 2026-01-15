@@ -24,7 +24,7 @@ if [ ! -f "/roms/backup/arkosbackup.tar.gz" ]; then
   exit 1
 fi
 
-printf "\nAre you sure you want to restore a backup of your ArkOS settings?\n"
+printf "\nAre you sure you want to restore a backup of your dArkOS settings?\n"
 printf "\nPress A to continue.  Press B to exit.\n"
 while true
 do

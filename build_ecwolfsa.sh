@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Build and install ECWolf standalone emulator
-if [ -f "Arkbuild_package_cache/${CHIPSET}/ecwolfsa.tar.gz" ] && [ "$(cat Arkbuild_package_cache/${CHIPSET}/ecwolfsa.commit)" == "$(curl -s https:/api.bitbucket.org/2.0/repositories/ecwolf/ecwolf/commits/master | jq -r '.values[0].hash')" ]; then
+if [ -f "Arkbuild_package_cache/${CHIPSET}/ecwolfsa.tar.gz" ] && [ "$(cat Arkbuild_package_cache/${CHIPSET}/ecwolfsa.commit)" == "$(curl -s https://api.bitbucket.org/2.0/repositories/ecwolf/ecwolf/commits/master | jq -r '.values[0].hash')" ]; then
     sudo tar -xvzpf Arkbuild_package_cache/${CHIPSET}/ecwolfsa.tar.gz
 else
 	call_chroot "cd /home/ark &&

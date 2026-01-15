@@ -44,11 +44,11 @@ if [[ ${@} == "pico8" ]]; then
   fi
   exit 0
 elif [[ -e /dev/shm/PNG_Loaded ]]; then
-  Last_Game=`grep '"path":' /home/ark/.config/${@}/content_image_history.lpl | head -1 | grep -oP '(?<=": ").*?(?=")'`
+  Last_Game=`grep '"path":' /home/ark/.config/${@}/playlists/builtin/content_image_history.lpl | head -1 | grep -oP '(?<=": ").*?(?=")'`
   Last_Core="/home/ark/.config/retroarch/cores/fake08_libretro.so"
 else
-  Last_Game=`grep '"path":' /home/ark/.config/${@}/content_history.lpl | head -1 | grep -oP '(?<=": ").*?(?=")'`
-  Last_Core=`grep '"core_path":' /home/ark/.config/${@}/content_history.lpl | head -1 | grep -oP '(?<=": ").*?(?=")'`
+  Last_Game=`grep '"path":' /home/ark/.config/${@}/playlists/builtin/content_history.lpl | head -1 | grep -oP '(?<=": ").*?(?=")'`
+  Last_Core=`grep '"core_path":' /home/ark/.config/${@}/playlists/builtin/content_history.lpl | head -1 | grep -oP '(?<=": ").*?(?=")'`
 fi
 
 echo "/usr/local/bin/BaRT_QuickMode.sh"

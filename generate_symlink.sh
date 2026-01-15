@@ -33,7 +33,7 @@ for d in ./Ark_devenv* ./Arkbuild*; do
 done
 
 # --- Main find loop ---
-eval "find . $PRUNE \( -type d -name '*$SRC_SUFFIX' -o -type f -name '*.$SRC_SUFFIX' \) -print" |
+eval "find . $PRUNE \( -type d -name '*$SRC_SUFFIX' -o -type f -name '*.$SRC_SUFFIX' -o -type l -name '*.$SRC_SUFFIX' \) -print" |
 while read -r item; do
     dir=$(dirname "$item")
     base=$(basename "$item")

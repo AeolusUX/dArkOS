@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Build and install mvem for various dArkOS menus from christianhaitian/mvem
-if [ -f "Arkbuild_package_cache/${CHIPSET}/mvem.tar.gz" ] && [ "$(cat Arkbuild_package_cache/${CHIPSET}/mvem.commit)" == "$(curl -s https:/api.github.com/repos/christianhaitian/Paul-Robson-s-Microvision-Emulation/commits/master | jq -r '.sha')" ]; then
+if [ -f "Arkbuild_package_cache/${CHIPSET}/mvem.tar.gz" ] && [ "$(cat Arkbuild_package_cache/${CHIPSET}/mvem.commit)" == "$(curl -s https://api.github.com/repos/christianhaitian/Paul-Robson-s-Microvision-Emulation/commits/master | jq -r '.sha')" ]; then
     sudo tar -xvzpf Arkbuild_package_cache/${CHIPSET}/mvem.tar.gz
 else
 	call_chroot "cd /home/ark &&

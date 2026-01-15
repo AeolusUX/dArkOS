@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Build and install fake08 standalone emulator
-if [ -f "Arkbuild_package_cache/${CHIPSET}/fake08.tar.gz" ] && [ "$(cat Arkbuild_package_cache/${CHIPSET}/fake08.commit)" == "$(curl -s https:/api.github.com/repos/jtothebell/fake-08/commits/master | jq -r '.sha')" ]; then
+if [ -f "Arkbuild_package_cache/${CHIPSET}/fake08.tar.gz" ] && [ "$(cat Arkbuild_package_cache/${CHIPSET}/fake08.commit)" == "$(curl -s https://api.github.com/repos/jtothebell/fake-08/commits/master | jq -r '.sha')" ]; then
     sudo tar -xvzpf Arkbuild_package_cache/${CHIPSET}/fake08.tar.gz
 else
 	call_chroot "source /root/.bashrc && cd /home/ark &&

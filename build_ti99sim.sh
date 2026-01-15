@@ -3,13 +3,13 @@
 # Build and install ti99sim standalone emulator
 if [ "$UNIT" == "rgb10" ]; then
   BUILD_UNIT="rgb10"
-elif [ "$UNIT" == "rg351mp" ] || [ "$UNIT" == "g350" ] || [ "$UNIT" == "r36s" ]; then
+elif [ "$UNIT" == "rg351mp" ] || [ "$UNIT" == "g350" ] || [ "$UNIT" == "a10mini" ]; || [ "$UNIT" == "r36s" ]; then
   BUILD_UNIT="rg351mp"
 elif [ "$CHIPSET" == "rk3566" ]; then
   BUILD_UNIT="rg503"
 fi
 
-if [ -f "Arkbuild_package_cache/${CHIPSET}/ti99_${BUILD_UNIT}.tar.gz" ] && [ "$(cat Arkbuild_package_cache/${CHIPSET}/ti99_${BUILD_UNIT}.commit)" == "$(curl -s https:/api.github.com/repos/christianhaitian/ti99sim/commits/${BUILD_UNIT} | jq -r '.sha')" ]; then
+if [ -f "Arkbuild_package_cache/${CHIPSET}/ti99_${BUILD_UNIT}.tar.gz" ] && [ "$(cat Arkbuild_package_cache/${CHIPSET}/ti99_${BUILD_UNIT}.commit)" == "$(curl -s https://api.github.com/repos/christianhaitian/ti99sim/commits/${BUILD_UNIT} | jq -r '.sha')" ]; then
     sudo tar -xvzpf Arkbuild_package_cache/${CHIPSET}/ti99_${BUILD_UNIT}.tar.gz
 else
 	call_chroot "cd /home/ark &&

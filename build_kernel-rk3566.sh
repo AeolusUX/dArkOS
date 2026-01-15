@@ -13,15 +13,14 @@ if [ ! -d "$KERNEL_SRC" ]; then
 fi
 cd $KERNEL_SRC
 # Change the boot logo depending on the device
-if [ "$UNIT" == "rgb30" ] || [ "$UNIT" == "rgb20pro" ]; then
-  if [[ -f "../logos/unrotated/dArkos${UNIT}.png" ]]; then
-    apt list --installed 2>/dev/null | grep -q "netpbm"
-    if [[ $? != "0" ]]; then
-      sudo apt -y install netpbm
-    fi	
-    pngtopnm ../logos/unrotated/dArkos${UNIT}.png | ppmquant 224 | pnmnoraw > drivers/video/logo/logo_linux_clut224.ppm
-  fi
+if [[ -e "../logos/unrotated/dArkos${UNIT}.png" ]]; then
+  apt list --installed 2>/dev/null | grep -q "netpbm"
+  if [[ $? != "0" ]]; then
+    sudo apt -y install netpbm
+  fi	
+  pngtopnm ../logos/unrotated/dArkos${UNIT}.png | ppmquant 224 | pnmnoraw > drivers/video/logo/logo_linux_clut224.ppm
 fi
+
 if [ "$UNIT" != "503" ] && [[ "$UNIT" != *"353"* ]]; then
   make ARCH=arm64 rk3566_optimized_with_wifi_linux_defconfig
   CFLAGS=-Wno-deprecated-declarations make -j$(nproc) ARCH=arm64 KERNEL_DTS=rk3566 KERNEL_CONFIG=rk3566_optimized_with_wifi_linux_defconfig
@@ -88,9 +87,15 @@ sudo rm -f ${mountpoint}/initrd.img
 # Build uboot and resource and install it to the image
 cd $KERNEL_SRC
 if [ "$UNIT" == "503" ] || [[ "$UNIT" == *"353"* ]]; then
-  cp arch/arm64/boot/dts/rockchip/${UNIT_DTB}.dtb .
+  #cp arch/arm64/boot/dts/rockchip/${UNIT_DTB}.dtb .
   # Next line generates the resource.img file needed to flash to the image and to build the uboot
-  scripts/mkimg --dtb ${UNIT_DTB}.dtb
+  git clone --depth=1 https://github.com/rockchip-linux/rkbin
+  cd rkbin/tools
+  ./resource_tool --pack ../../arch/arm64/boot/dts/rockchip/${UNIT_DTB}.dtb
+  cp resource.img ../../.
+  cd ../..
+  rm -rf rkbin
+  #scripts/mkimg --dtb ${UNIT_DTB}.dtb
 else
   # For some reason, supported PowKiddy rk3566 devices need resource.img generated from the RG503 Kernel source
   git clone --recursive --depth=1 https://github.com/christianhaitian/rg503Kernel.git

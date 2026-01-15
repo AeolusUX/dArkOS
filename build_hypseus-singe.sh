@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Build and install Hypseus-singe standalone emulator
-if [ -f "Arkbuild_package_cache/${CHIPSET}/hypseus-singe.tar.gz" ] && [ "$(cat Arkbuild_package_cache/${CHIPSET}/hypseus-singe.commit)" == "$(curl -s https:/api.github.com/repos/DirtBagXon/hypseus-singe/commits/master | jq -r '.sha')" ]; then
+if [ -f "Arkbuild_package_cache/${CHIPSET}/hypseus-singe.tar.gz" ] && [ "$(cat Arkbuild_package_cache/${CHIPSET}/hypseus-singe.commit)" == "$(curl -s https://api.github.com/repos/DirtBagXon/hypseus-singe/commits/master | jq -r '.sha')" ]; then
     sudo tar -xvzpf Arkbuild_package_cache/${CHIPSET}/hypseus-singe.tar.gz
 else
 	call_chroot "source /root/.bashrc && cd /home/ark &&

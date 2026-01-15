@@ -50,6 +50,9 @@ function call_chroot() {
 }
 
 function call_chroot32() {
+  if [ ! -d Arkbuild32 ]; then
+    setup_arkbuild32
+  fi
   sudo chroot Arkbuild32 bash -c "source /root/.bashrc && $@"
 }
 

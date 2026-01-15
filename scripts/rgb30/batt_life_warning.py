@@ -32,6 +32,8 @@ while(True):
                         f.write("1")
                         f.close()
                         time.sleep(30)
+                else
+                        time.sleep(30)
         else:
                 if int(open(red_led, "r").read()) == 1:
                         f = open(red_led, "w")

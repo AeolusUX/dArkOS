@@ -14,7 +14,7 @@ if [[ ! -d "/$directory/atarijaguar/.bigpemu_userdata" ]]; then
   else
     CONFIG="BigPEmuConfig.bigpcfg.rk3566"
   fi
-  cp -f /opt/bigpemu/defaultconfig/${CONFIG} /$directory/atarijaguar/.bigpemu_userdata/BigPEmuConfig.bigpcfg
+  cp -f /opt/bigpemu/defaultconfigs/${CONFIG} /$directory/atarijaguar/.bigpemu_userdata/BigPEmuConfig.bigpcfg
 fi
 
 rm -rf /home/ark/.bigpemu_userdata

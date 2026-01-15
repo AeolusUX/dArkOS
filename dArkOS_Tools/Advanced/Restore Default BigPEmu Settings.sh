@@ -38,7 +38,7 @@ while true
 do
     Test_Button_A
     if [ "$?" -eq "10" ]; then
-      cp -f /opt/bigpemu/defaultconfig/${CONFIG} /home/ark/.bigpemu_userdata/BigPEmuConfig.bigpcfg
+      cp -f /opt/bigpemu/defaultconfigs/${CONFIG} /home/ark/.bigpemu_userdata/BigPEmuConfig.bigpcfg
       if [ $? == 0 ]; then
         printf "\nRestored the default BigPEmu emulator configuration for the\n"
         printf "$DEVICE"

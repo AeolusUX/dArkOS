@@ -1,3 +1,4 @@
+ant
 autotools-dev
 build-essential
 ccache
@@ -14,8 +15,10 @@ libcurl4-openssl-dev
 libdrm-dev
 libeigen3-dev
 libevdev-dev
+libfmt-dev
 libfreeimage-dev
 libfreetype-dev
+libinih-dev
 libluajit-5.1-dev
 libncurses-dev
 libnl-3-dev
@@ -24,6 +27,7 @@ libnl-route-3-dev
 libogg-dev
 libopenal-dev
 libphysfs-dev
+libpixman-1-dev
 libpng-dev
 libsdl2-gfx-dev
 libsdl2-image-dev

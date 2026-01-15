@@ -9,7 +9,7 @@ else
 	  chmod 777 builds-alt.sh &&
 	  eatmydata ./builds-alt.sh dolphinsa
 	  "
-	sudo mkdir -p Arkbuild/opt/dolphin
+	#sudo mkdir -p Arkbuild/opt/dolphin
 	sudo mkdir -p Arkbuild/home/ark/.local/share/dolphin-emu
 	sudo cp -Ra Arkbuild/home/ark/${CHIPSET}_core_builds/dolphinsa64/dolphin-emu-nogui Arkbuild/opt/dolphin/
 	sudo cp -Ra Arkbuild/home/ark/${CHIPSET}_core_builds/dolphin/Data/Sys/* Arkbuild/home/ark/.local/share/dolphin-emu/

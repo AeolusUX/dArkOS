@@ -119,6 +119,16 @@ wifi.scan-rand-mac-address=no
 unmanaged-devices=interface-name:p2p0;interface-name:ap0
 EOF
 
+# Remove requirement of sudo for controlling nmcli
+cat <<EOF | sudo tee -a Arkbuild/etc/polkit-1/rules.d/10-networkmanager.rules
+polkit.addRule(function(action, subject) {
+    if (action.id.indexOf("org.freedesktop.NetworkManager") == 0 &&
+        subject.isInGroup("netdev")) {
+        return polkit.Result.YES;
+    }
+});
+EOF
+
 # Default set timezone to New York
 sudo chroot Arkbuild/ bash -c "ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime"
 
@@ -250,6 +260,7 @@ sudo chroot Arkbuild/ bash -c "systemctl disable autosuspend"
 sudo cp scripts/keystroke.py Arkbuild/usr/local/bin/
 sudo cp scripts/b2.sh Arkbuild/usr/local/bin/
 sudo cp scripts/freej2me.sh Arkbuild/usr/local/bin/
+sudo cp scripts/easyrpg.sh Arkbuild/usr/local/bin/
 sudo cp scripts/get_last_played.sh Arkbuild/usr/local/bin/
 sudo cp scripts/gx4000.sh Arkbuild/usr/local/bin/
 sudo cp scripts/isitpng.sh Arkbuild/usr/local/bin/
@@ -447,7 +458,7 @@ sudo cp launchimages/loading.jpg.${UNIT} ${fat32_mountpoint}/launchimages/loadin
 # Copy various tools to roms folders
 sudo cp -a ecwolf/Scan* ${fat32_mountpoint}/wolf/
 sudo cp -a scummvm/scripts/Scan* ${fat32_mountpoint}/scummvm/
-sudo cp -a hypseus-singe/scripts/Scan* ${fat32_mountpoint}/scummvm/
+sudo cp -a hypseus-singe/scripts/Scan* ${fat32_mountpoint}/alg/
 sudo cp -a scummvm/scripts/menu.scummvm ${fat32_mountpoint}/scummvm/
 
 # Clone some themes to the roms/themes folder

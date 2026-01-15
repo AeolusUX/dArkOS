@@ -36,7 +36,11 @@ if [ "$(cat /home/ark/.config/.DEVICE)" == "RGB30" ] || [ "$(cat /home/ark/.conf
 else
   if [ -z "$spktoggle" ]
   then
+    if [ "$(cat /home/ark/.config/.DEVICE)" != "A10MINI" ]; then
       amixer -q sset 'Playback Path' SPK
+    else
+      amixer -q sset 'Playback Path' SPK_HP
+    fi
   fi
   if [ -f "/var/local/asound.state" ]
   then

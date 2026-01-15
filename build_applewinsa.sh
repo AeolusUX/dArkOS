@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Build and install applewin standalone emulator along with sdl2-compat
-if [ -f "Arkbuild_package_cache/${CHIPSET}/applewinsa.tar.gz" ] && [ "$(cat Arkbuild_package_cache/${CHIPSET}/applewinsa.commit)" == "$(curl -s https:/api.github.com/repos/audetto/AppleWin/commits/master | jq -r '.sha')" ]; then
+if [ -f "Arkbuild_package_cache/${CHIPSET}/applewinsa.tar.gz" ] && [ "$(cat Arkbuild_package_cache/${CHIPSET}/applewinsa.commit)" == "$(curl -s https://api.github.com/repos/audetto/AppleWin/commits/master | jq -r '.sha')" ]; then
     sudo tar -xvzpf Arkbuild_package_cache/${CHIPSET}/applewinsa.tar.gz
 else
 	call_chroot "cd /home/ark &&

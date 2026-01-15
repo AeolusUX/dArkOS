@@ -4,3 +4,6 @@ echo 77 > /sys/class/gpio/export
 sudo chmod 777 /sys/class/gpio/gpio77/direction
 sudo echo out > /sys/class/gpio/gpio77/direction
 sudo chmod 777 /sys/class/gpio/gpio77/value
+if [[ "$(cat /home/ark/.config/.DEVICE)" = "A10MINI" ]]; then
+  echo 1 > /sys/class/gpio/gpio77/value
+fi

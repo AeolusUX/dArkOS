@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Build and install linapple standalone emulator along with sdl2-compat
-if [ -f "Arkbuild_package_cache/${CHIPSET}/linapplesa.tar.gz" ] && [ "$(cat Arkbuild_package_cache/${CHIPSET}/linapplesa.commit)" == "$(curl -s https:/api.github.com/repos/christianhaitian/linapple/commits/master | jq -r '.sha')" ]; then
+if [ -f "Arkbuild_package_cache/${CHIPSET}/linapplesa.tar.gz" ] && [ "$(cat Arkbuild_package_cache/${CHIPSET}/linapplesa.commit)" == "$(curl -s https://api.github.com/repos/christianhaitian/linapple/commits/master | jq -r '.sha')" ]; then
     sudo tar -xvzpf Arkbuild_package_cache/${CHIPSET}/linapplesa.tar.gz
 else
 	call_chroot "export CCACHE_DISABLE=1 &&

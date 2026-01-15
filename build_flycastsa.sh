@@ -10,7 +10,12 @@ else
 	  eatmydata ./builds-alt.sh flycastsa
 	  "
 	sudo mkdir -p Arkbuild/opt/flycastsa
-	sudo cp -R Arkbuild/home/ark/${CHIPSET}_core_builds/flycastsa-64/flycast Arkbuild/opt/flycastsa/
+	if [[ "$CHIPSET" = "rk3326" ]]; then
+	  ext="-rk3326"
+	else
+	  ext=""
+	fi
+	sudo cp -R Arkbuild/home/ark/${CHIPSET}_core_builds/flycastsa-64/flycast${ext} Arkbuild/opt/flycastsa/flycast
 	if [ -f "Arkbuild_package_cache/${CHIPSET}/flycastsa.tar.gz" ]; then
 	  sudo rm -f Arkbuild_package_cache/${CHIPSET}/flycastsa.tar.gz
 	fi

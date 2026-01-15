@@ -128,6 +128,16 @@ wifi.scan-rand-mac-address=no
 unmanaged-devices=interface-name:p2p0;interface-name:ap0
 EOF
 
+# Remove requirement of sudo for controlling nmcli
+cat <<EOF | sudo tee -a Arkbuild/etc/polkit-1/rules.d/10-networkmanager.rules
+polkit.addRule(function(action, subject) {
+    if (action.id.indexOf("org.freedesktop.NetworkManager") == 0 &&
+        subject.isInGroup("netdev")) {
+        return polkit.Result.YES;
+    }
+});
+EOF
+
 # Default set timezone to New York
 sudo chroot Arkbuild/ bash -c "ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime"
 
@@ -174,6 +184,11 @@ fi
 sudo chroot Arkbuild/ bash -c "chown -R ark:ark /opt"
 sudo chmod -R 777 Arkbuild/opt/system/
 
+# Add tool copy game roms for device RGB10
+if [[ "$UNIT" == *"rgb10"* ]]; then
+  sudo cp dArkOS_Tools/RGB10/*.sh Arkbuild/opt/system/
+fi
+
 # Copy performance scripts
 sudo cp scripts/perf* Arkbuild/usr/local/bin/
 
@@ -187,6 +202,11 @@ sudo chmod 0440 Arkbuild/etc/sudoers.d/ark_preserve_sdl_video_egl_driver
 echo -e "Generating 20-usb-alsa.rules udev for usb dac support"
 echo -e "KERNEL==\"controlC[0-9]*\", DRIVERS==\"usb\", SYMLINK=\"snd/controlC7\"" | sudo tee Arkbuild/etc/udev/rules.d/20-usb-alsa.rules
 sudo chroot Arkbuild/ bash -c "(crontab -l 2>/dev/null; echo \"@reboot /usr/local/bin/checknswitchforusbdac.sh &\") | crontab -"
+
+# Fix LEDs on A10 Mini to default to the nice dim blue light while powered on
+if [[ "$UNIT" == "a10mini" ]]; then
+  sudo chroot Arkbuild/ bash -c "(crontab -l 2>/dev/null; echo \"@reboot /usr/local/bin/fix_power_led &\") | crontab -"
+fi
 
 # Disable requirement for sudo for setting niceness
 echo "ark              -       nice            -20" | sudo tee -a Arkbuild/etc/security/limits.conf
@@ -215,6 +235,7 @@ sudo chroot Arkbuild/ bash -c "systemctl disable autosuspend"
 sudo cp scripts/keystroke.py Arkbuild/usr/local/bin/
 sudo cp scripts/b2.sh Arkbuild/usr/local/bin/
 sudo cp scripts/freej2me.sh Arkbuild/usr/local/bin/
+sudo cp scripts/easyrpg.sh Arkbuild/usr/local/bin/
 sudo cp scripts/get_last_played.sh Arkbuild/usr/local/bin/
 sudo cp scripts/gx4000.sh Arkbuild/usr/local/bin/
 sudo cp scripts/isitpng.sh Arkbuild/usr/local/bin/
@@ -235,16 +256,23 @@ fi
 sudo chroot Arkbuild/ bash -c "systemctl set-default multi-user.target"
 if [[ "$UNIT" == "rgb10" ]]; then
   sudo cp device/rgb10/* Arkbuild/usr/local/bin/
-elif [[ "$UNIT" == "rg351mp" ]] || [[ "$UNIT" == "g350" ]] || [[ "$UNIT" == "r36s" ]]; then
+elif [[ "$UNIT" == "rg351mp" ]] || [[ "$UNIT" == "g350" ]] || [[ "$UNIT" == "a10mini" ]]; || [[ "$UNIT" == "r36s" ]]; then
   sudo cp device/rg351mp/*.sh Arkbuild/usr/local/bin/
   sudo cp device/rg351mp/*.py Arkbuild/usr/local/bin/
   sudo cp device/rg351mp/*.green Arkbuild/usr/local/bin/
   sudo cp device/rg351mp/*.red Arkbuild/usr/local/bin/
   sudo cp device/rg351mp/fix_power_led Arkbuild/usr/local/bin/
   sudo cp device/rg351mp/checkbrightonboot Arkbuild/usr/local/bin/
-  sudo cp device/rg351mp/"Change LED to Red.sh" Arkbuild/opt/system/
-  sudo chroot Arkbuild/ bash -c "chown -R ark:ark /opt"
-  sudo chmod 777 Arkbuild/opt/system/"Change LED to Red.sh"
+  if [[ "$UNIT" == "a10mini" ]]; then
+    sudo cp device/a10mini/"Change LED to Green.sh" Arkbuild/opt/system/"Change LED to Orange.sh"
+    sudo mv -f Arkbuild/usr/local/bin/"Change LED to Red.sh" Arkbuild/usr/local/bin/"Change LED to Blue.sh"
+    sudo chroot Arkbuild/ bash -c "chown -R ark:ark /opt"
+    sudo chmod 777 Arkbuild/opt/system/"Change LED to Orange.sh"
+  else
+    sudo cp device/rg351mp/"Change LED to Red.sh" Arkbuild/opt/system/
+    sudo chroot Arkbuild/ bash -c "chown -R ark:ark /opt"
+    sudo chmod 777 Arkbuild/opt/system/"Change LED to Red.sh"
+  fi
   sudo cp device/rg351mp/*.service Arkbuild/etc/systemd/system/
   sudo chroot Arkbuild/ bash -c "systemctl enable 351mp batt_led"
 fi
@@ -440,13 +468,13 @@ sudo wget -t 3 -T 60 --no-check-certificate https://www.lexaloffle.com/bbs/cpost
 sudo wget -t 3 -T 60 --no-check-certificate https://www.lexaloffle.com/bbs/cposts/ch/cherrybomb-0.p8.png -O ${fat32_mountpoint}/pico-8/carts/cherrybomb-0.p8.png
 
 # Copy default game launch images
-sudo cp launchimages/loading.ascii.rgb10 ${fat32_mountpoint}/launchimages/loading.ascii
-sudo cp launchimages/loading.jpg.rgb10 ${fat32_mountpoint}/launchimages/loading.jpg
+sudo cp launchimages/loading.ascii.${UNIT} ${fat32_mountpoint}/launchimages/loading.ascii
+sudo cp launchimages/loading.jpg.${UNIT} ${fat32_mountpoint}/launchimages/loading.jpg
 
 # Copy various tools to roms folders
 sudo cp -a ecwolf/Scan* ${fat32_mountpoint}/wolf/
 sudo cp -a scummvm/scripts/Scan* ${fat32_mountpoint}/scummvm/
-sudo cp -a hypseus-singe/scripts/Scan* ${fat32_mountpoint}/scummvm/
+sudo cp -a hypseus-singe/scripts/Scan* ${fat32_mountpoint}/alg/
 sudo cp -a scummvm/scripts/menu.scummvm ${fat32_mountpoint}/scummvm/
 
 # Clone some themes to the roms/themes folder

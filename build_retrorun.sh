@@ -7,7 +7,7 @@ else
   ext=""
 fi
 
-if [ -f "Arkbuild_package_cache/${CHIPSET}/retrorun.tar.gz" ] && [ "$(cat Arkbuild_package_cache/${CHIPSET}/retrorun.commit)" == "$(curl -s https:/api.github.com/repos/navy1978/retrorun/commits/master | jq -r '.sha')" ]; then
+if [ -f "Arkbuild_package_cache/${CHIPSET}/retrorun.tar.gz" ] && [ "$(cat Arkbuild_package_cache/${CHIPSET}/retrorun.commit)" == "$(curl -s https://api.github.com/repos/navy1978/retrorun/commits/master | jq -r '.sha')" ]; then
     sudo tar -xvzpf Arkbuild_package_cache/${CHIPSET}/retrorun.tar.gz
 else
 	call_chroot "cd /home/ark &&
@@ -27,7 +27,7 @@ else
 	sudo git --git-dir=Arkbuild/home/ark/${CHIPSET}_core_builds/retrorun/.git --work-tree=Arkbuild/home/ark/${CHIPSET}_core_builds/retrorun rev-parse HEAD > Arkbuild_package_cache/${CHIPSET}/retrorun.commit
 fi
 if [[ "${BUILD_ARMHF}" == "y" ]]; then
-  if [ -f "Arkbuild_package_cache/${CHIPSET}/retrorun32.tar.gz" ] && [ "$(cat Arkbuild_package_cache/${CHIPSET}/retrorun32.commit)" == "$(curl -s https:/api.github.com/repos/navy1978/retrorun/commits/master | jq -r '.sha')" ]; then
+  if [ -f "Arkbuild_package_cache/${CHIPSET}/retrorun32.tar.gz" ] && [ "$(cat Arkbuild_package_cache/${CHIPSET}/retrorun32.commit)" == "$(curl -s https://api.github.com/repos/navy1978/retrorun/commits/master | jq -r '.sha')" ]; then
     sudo tar -xvzpf Arkbuild_package_cache/${CHIPSET}/retrorun32.tar.gz
   else
 	  call_chroot32 "cd /home/ark &&

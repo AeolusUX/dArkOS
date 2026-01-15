@@ -43,10 +43,10 @@ KERNEL_VERSION=$(basename $(ls Arkbuild/lib/modules))
 sudo cp $KERNEL_SRC/.config Arkbuild/boot/config-${KERNEL_VERSION}
 sudo cp $KERNEL_SRC/arch/arm64/boot/Image ${mountpoint}/
 sudo cp $KERNEL_SRC/arch/arm64/boot/dts/rockchip/${KERNEL_DTB} ${mountpoint}/
-if [ "$UNIT" == "rg351mp" ] || [ "$UNIT" == "g350" ] || [ "$UNIT" == "r36s" ]; then
-  sudo cp /tmp/rg351mp-uboot.dtb ${mountpoint}/.
-  sudo rm /tmp/rg351mp-uboot.dtb
-fi
+
+if [ "$UNIT" == "rg351mp" ] || [ "$UNIT" == "g350" ] || [ "$UNIT" == "a10mini" ]; || [ "$UNIT" == "r36s" ]; then
+  sudo cp /tmp/${UNIT}-uboot.dtb ${mountpoint}/rg351mp-uboot.dtb
+  sudo rm /tmp/${UNIT}-uboot.dtb
 
 # Create uInitrd from generated initramfs
 sudo cp /usr/bin/qemu-aarch64-static Arkbuild/usr/bin/

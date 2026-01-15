@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Build and install piemu standalone emulator along with sdl2-compat
-if [ -f "Arkbuild_package_cache/${CHIPSET}/piemu.tar.gz" ] && [ "$(cat Arkbuild_package_cache/${CHIPSET}/piemu.commit)" == "$(curl -s https:/api.github.com/repos/YonKuma/piemu/commits/modernize | jq -r '.sha')" ]; then
+if [ -f "Arkbuild_package_cache/${CHIPSET}/piemu.tar.gz" ] && [ "$(cat Arkbuild_package_cache/${CHIPSET}/piemu.commit)" == "$(curl -s https://api.github.com/repos/YonKuma/piemu/commits/modernize | jq -r '.sha')" ]; then
     sudo tar -xvzpf Arkbuild_package_cache/${CHIPSET}/piemu.tar.gz
 else
 	call_chroot "cd /home/ark &&

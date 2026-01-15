@@ -18,7 +18,6 @@ dosbox_pure
 DoubleCherryGB
 doukutsu_rs
 duckstation
-easyrpg
 ecwolf
 emuscv
 ep128emu_core

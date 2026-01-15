@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Build and install Mupen64Plus standalone emulator
-if [ -f "Arkbuild_package_cache/${CHIPSET}/mupen64plussa.tar.gz" ] && [ "$(cat Arkbuild_package_cache/${CHIPSET}/mupen64plussa.commit)" == "$(curl -s https:/api.github.com/repos/mupen64plus/mupen64plus-core/commits/master | jq -r '.sha')" ]; then
+if [ -f "Arkbuild_package_cache/${CHIPSET}/mupen64plussa.tar.gz" ] && [ "$(cat Arkbuild_package_cache/${CHIPSET}/mupen64plussa.commit)" == "$(curl -s https://api.github.com/repos/mupen64plus/mupen64plus-core/commits/master | jq -r '.sha')" ]; then
     sudo tar -xvzpf Arkbuild_package_cache/${CHIPSET}/mupen64plussa.tar.gz
 else
 	call_chroot "cd /home/ark &&

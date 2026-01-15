@@ -2307,8 +2307,8 @@
 		<emulators>
 			<emulator name="retroarch">
 				<cores>
-					<core>freej2me</core>
 					<core>freej2me-plus</core>
+					<core>freej2me</core>
 				</cores>
 			</emulator>
 		</emulators>
@@ -2455,6 +2455,8 @@
 		<command>sudo perfmax %GOVERNOR% %ROM%; nice -n -19 %ROM%; sudo perfnorm</command>
 		<platform>pc</platform>
 		<theme>ports</theme>
+		<manufacturer>Various</manufacturer>
+		<release>unknown</release>
 	</system>
 	<system>
 		<name>scummvm</name>
@@ -2497,6 +2499,8 @@
 		<command>sudo perfmax %GOVERNOR% %ROM%; /usr/local/bin/mediaplayer.sh %ROM%; sudo perfnorm</command>
 		<platform>videos</platform>
 		<theme>vhs</theme>
+		<manufacturer>Various</manufacturer>
+		<release>unknown</release>
 	</system>
 	<system>
 		<name>retroarch</name>

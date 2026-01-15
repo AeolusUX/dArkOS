@@ -12,7 +12,7 @@ if compgen -G "/boot/rk3566*" > /dev/null; then
 fi
 . /usr/local/bin/buttonmon.sh
 
-printf "\nAre you sure you want to create a backup of your ArkOS settings?\n"
+printf "\nAre you sure you want to create a backup of your dArkOS settings?\n"
 printf "\nPress A to continue.  Press B to exit.\n"
 while true
 do

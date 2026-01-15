@@ -43,7 +43,7 @@ do
 	sudo touch /usr/local/bin/quickmode.sh
 	echo '#!/bin/bash' | sudo tee -a /usr/local/bin/quickmode.sh
 	echo '' | sudo tee -a /usr/local/bin/quickmode.sh
-	echo 'if [[ ! -z $(pgrep pico8) ]]; then' | sudo tee -a /usr/local/bin/quickmode.sh
+	echo 'if [[ ! -z $(pgrep pico8) ]] && [[ -z $(pgrep -x retroarch) ]]; then' | sudo tee -a /usr/local/bin/quickmode.sh
 	echo '  pkill lastgame.sh' | sudo tee -a /usr/local/bin/quickmode.sh
 	echo '  sudo rm -f /home/ark/.config/lastgame.sh' | sudo tee -a /usr/local/bin/quickmode.sh
 	echo '  printf "%s%s%s%s\n" "#" "!" "/bin" "/bash" > /home/ark/.config/lastgame.sh' | sudo tee -a /usr/local/bin/quickmode.sh
